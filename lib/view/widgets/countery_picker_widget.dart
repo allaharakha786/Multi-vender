@@ -15,13 +15,13 @@ class _CountryPickerContainerState extends State<CountryPickerContainer> {
       height: MediaQuery.of(context).size.height * 0.07,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
-        color: Color(0xffF5F7F7),
+        color: Colors.grey.withOpacity(0.5),
         boxShadow: [
           BoxShadow(
             blurRadius: 4,
             spreadRadius: 0,
             offset: Offset(0, 3),
-            color: Colors.grey.withOpacity(0.3), // Shadow color
+            color: Colors.grey.withOpacity(0.5), // Shadow color
           ),
         ],
         borderRadius: BorderRadius.circular(10),
@@ -29,6 +29,18 @@ class _CountryPickerContainerState extends State<CountryPickerContainer> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+            Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(12),
+                hintText: 'Country',
+                border: InputBorder.none, // Removes the underline
+                hintStyle: TextStyle(color: Colors.grey),
+              ),
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: InkWell(
@@ -59,17 +71,8 @@ class _CountryPickerContainerState extends State<CountryPickerContainer> {
               ),
             ),
           ),
-          VerticalDivider(color: Colors.grey), // Divider between dropdown and text field
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Name',
-                border: InputBorder.none, // Removes the underline
-                hintStyle: TextStyle(color: Colors.grey),
-              ),
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
+          // VerticalDivider(color: Colors.grey), // Divider between dropdown and text field
+         
         ],
       ),
     );
