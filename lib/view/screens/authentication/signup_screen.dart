@@ -1,9 +1,12 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
-import '../../widgets/countery_picker_widget.dart';
+
 import '../../widgets/custom_circle.dart';
 import '../../widgets/social_mediaicon_widget.dart';
 import '../../widgets/terms_contdition_widget.dart';
@@ -16,6 +19,9 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  PasswordController passwordController = Get.put(PasswordController());
+
+  Country? _selectedCountry;
 GlobalKey<FormState> formKey= GlobalKey();
 
   @override
@@ -37,36 +43,89 @@ GlobalKey<FormState> formKey= GlobalKey();
                  SizedBox(height: mediaQuerySize.height*0.03.h,),
               Center(child: Text('Create Your Account',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w400),)),
               SizedBox(height: mediaQuerySize.height*0.03.h,),
-              CustomField(text: 'Full Name',),
+             Customfield(hintText: 'Full Name', 
+              validator: (value) {
+                if(value!.isEmpty){
+                  return 'please enter the following field';
+                }
+                return null;
+              },),
               SizedBox(height: mediaQuerySize.height*0.03.h,),
-              CustomField(text: 'Phone Number',),
+Customfield(hintText: 'Phone Number', 
+              validator: (value) {
+                if(value!.isEmpty){
+                  return 'please enter the following field';
+                }
+                return null;
+              },),
+
+               
               SizedBox(height: mediaQuerySize.height*0.03.h,),
-               CountryPickerContainer(),
+              Customfield(hintText: 'country', 
+              validator: (value) {
+                if(value!.isEmpty){
+                  return 'please enter the following field';
+                }
+                return null;
+              },
+              child: GestureDetector(
+    onTap: () {
+      showCountryPicker(
+        context: context,
+        showPhoneCode: true, // Show country code
+        onSelect: (Country country) {
+          setState(() {
+            _selectedCountry = country;
+          });
+        },
+      );
+    },
+    child: Row(
+      mainAxisSize: MainAxisSize.min, // Ensures the Row fits within the suffixIcon constraints
+      children: [
+        Text(
+          _selectedCountry != null
+              ? "${_selectedCountry!.flagEmoji} +${_selectedCountry!.phoneCode}"
+              : "Select",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 14,
+          ),
+        ),
+        Icon(Icons.arrow_drop_down, color: Colors.grey),
+      ],
+    ),
+  ),),
+
+              //  CountryPickerContainer(),
                SizedBox(height: mediaQuerySize.height*0.03.h,),
-               CustomField(text: 'Email',
-                validator: (value) {
-              if(value!.isEmpty){
-                return 'Please fill the field';
-              }
-              return null;
-              
-            },
-               ), 
+              Customfield(hintText: 'Email', 
+              validator: (value) {
+                if(value!.isEmpty){
+                  return 'please enter the following field';
+                }
+                return null;
+              },),
                     SizedBox(height: mediaQuerySize.height*0.03.h,),
-                    
-               CustomField(text: 'Password',
-               
-            
-            validator: (value) {
-              if(value!.isEmpty){
-                return 'Please fill the field';
-              }
-              return null;
-              
-            },
-               
-               isSuffix: true,
-               suffixIcon:    Icon(Icons.visibility)  ,), 
+                    Customfield(hintText: 'Password',
+                    validator: (value) {
+                      if(value!.isEmpty){
+                        return 'please enter your password';
+                      }
+                      return null;
+                    },
+                    child:Obx(
+              () => IconButton(
+                icon: Icon(
+                  passwordController.isPasswordVisible.value
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                onPressed: passwordController.togglePasswordVisibility,
+              ),
+            ), 
+                    ),
+                     
                     SizedBox(height: mediaQuerySize.height*0.03.h,),
             TermsAndConditionsText(),
             SizedBox(height: mediaQuerySize.height*0.03.h,),

@@ -4,7 +4,7 @@ import 'package:multi_vender/view/widgets/arrow_back_button.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
-import '../../widgets/countery_picker_widget.dart';
+
 import '../../widgets/custom_circle.dart';
 import '../../widgets/social_mediaicon_widget.dart';
 import '../../widgets/terms_contdition_widget.dart';

@@ -24,7 +24,14 @@ class SignInScreen extends StatelessWidget {
             SizedBox(height: mediaQuerySize.height*0.01.h,),
            Text('a code. ',style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),),
             SizedBox(height: mediaQuerySize.height*0.03.h,),
-            CustomField(text: 'Email'),
+             Customfield(hintText: 'Email',
+            validator: (value){
+            if(value!.isEmpty){
+              return 'please enter your email';
+            }
+            return null;
+            },
+            ),
              SizedBox(height: mediaQuerySize.height*0.03.h,),
              CustomButton(name: 'Send Code'),
 
