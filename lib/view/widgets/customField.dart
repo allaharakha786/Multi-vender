@@ -7,36 +7,40 @@ class CustomField extends StatelessWidget {
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
 
-  CustomField({
-    super.key,
+  const CustomField({
+    Key? key,
     required this.text,
     this.suffixIcon,
     this.validator,
     this.isSuffix = false,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size mediaQuerySize = MediaQuery.of(context).size;
     return Container(
-      height: mediaQuerySize.height * 0.07.h,
-      width: mediaQuerySize.width * 0.9.w,
+      height: mediaQuerySize.height*0.08.h, // Slightly increased height for better spacing
+      width: mediaQuerySize.width*0.9.w, // Responsive width
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.07),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: TextFormField(
           validator: validator,
           decoration: InputDecoration(
             suffixIcon: isSuffix ? suffixIcon : null,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 5, vertical: 13),
+            contentPadding: EdgeInsets.symmetric(vertical: 15.h), // Adjusted padding for alignment
             hintText: text,
-            border: InputBorder.none,
-            hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide.none, // No visible border
+            ),
+            errorStyle: TextStyle(fontSize: 12.sp, color: Colors.red), // Error text styling
+            hintStyle: TextStyle(fontSize: 14.sp, color: Colors.black.withOpacity(0.5)),
           ),
-          style: TextStyle(color: Colors.black.withOpacity(0.5)),
+          style: TextStyle(fontSize: 14.sp, color: Colors.black.withOpacity(0.7)),
         ),
       ),
     );
