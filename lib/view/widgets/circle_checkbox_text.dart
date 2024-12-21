@@ -33,7 +33,7 @@ class _CircleCheckBoxState extends State<CircleCheckBox> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: isChecked ? Color(0xff115740) : Colors.transparent,
-              border: Border.all(color: Colors.grey, width: 2),
+              border: Border.all(color: Colors.black.withOpacity(0.07), width: 2),
             ),
             child: isChecked
                 ? Icon(

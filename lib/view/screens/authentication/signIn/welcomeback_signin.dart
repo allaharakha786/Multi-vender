@@ -30,7 +30,7 @@ class WelcomebackSignin extends StatelessWidget {
              SizedBox(height: mediaQuerySize.height*0.03.h,),
              CustomField(text: 'Email'), 
                   SizedBox(height: mediaQuerySize.height*0.03.h,),
-             CustomField(text: 'Password',suffixIcon: Icons.visibility_off_outlined,), 
+             CustomField(text: 'Password',suffixIcon:Icon( Icons.visibility_off_outlined),isSuffix: true,), 
                   SizedBox(height: mediaQuerySize.height*0.03.h,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

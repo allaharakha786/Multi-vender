@@ -4,7 +4,9 @@ import '../../controllers/utils/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String name;
-   CustomButton({super.key,required this.name});
+  void Function()? onTap;
+
+   CustomButton({super.key,required this.name, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class CustomButton extends StatelessWidget {
                                   color: AppColors.buttonColor,
                                    borderRadius: BorderRadius.circular(10)
                                   ),
-                               child: TextButton(onPressed: (){},
+                               child: TextButton(onPressed:onTap ,
                             child: Text(name,style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w600),)),                                             );
   }
 }

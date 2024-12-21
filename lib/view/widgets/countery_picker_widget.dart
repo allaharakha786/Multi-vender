@@ -15,13 +15,13 @@ class _CountryPickerContainerState extends State<CountryPickerContainer> {
       height: MediaQuery.of(context).size.height * 0.07,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.5),
+        color: Colors.black.withOpacity(0.07),
         boxShadow: [
           BoxShadow(
             blurRadius: 4,
             spreadRadius: 0,
             offset: Offset(0, 3),
-            color: Colors.grey.withOpacity(0.5), // Shadow color
+            color: Colors.black.withOpacity(0.07), // Shadow color
           ),
         ],
         borderRadius: BorderRadius.circular(10),
