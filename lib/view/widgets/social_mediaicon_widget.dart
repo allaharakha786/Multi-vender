@@ -15,7 +15,7 @@ class SocialMediaIconsRow extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
   borderRadius: BorderRadius.circular(10),
-         color: Colors.grey.shade300,
+         color: Colors.black.withOpacity(0.07),
         // image: DecorationImage(image: AssetImage('assets/images/gogle.png'))
       ),
       child: Image.asset(imgUrl,fit: BoxFit.cover,)

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
+import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
 
 class CustomField extends StatelessWidget {
   // final IconData? suffixIcon;
@@ -8,16 +13,18 @@ class CustomField extends StatelessWidget {
   Widget? prefixIcon;
   Widget? suffixIcon;
   Color? color;
-
+  String? Function(String?)? validator;
   final String text;
 
-  CustomField({super.key, required this.text, this.suffixIcon, this.isPrefixIcon = false, this.isSuffixIcon = false, this.prefixIcon, this.color});
+  CustomField({super.key, required this.text, this.suffixIcon, this.isPrefixIcon = false, this.isSuffixIcon = false, this.prefixIcon, this.color, this.validator});
 
   @override
   Widget build(BuildContext context) {
+    final PasswordController passwordController = Get.put(PasswordController());
+
     Size mediaQuerySize = MediaQuery.of(context).size;
     return Container(
-      height: mediaQuerySize.height * 0.07.h,
+      height: mediaQuerySize.height * 0.08.h, // Slightly increased height for better spacing
       width: mediaQuerySize.width * 0.9.w,
       decoration: BoxDecoration(
         color: color ?? Colors.grey.withOpacity(0.3),
@@ -33,7 +40,9 @@ class CustomField extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: TextField(
+        child: TextFormField(
+          validator: validator,
+
           decoration: InputDecoration(
             prefixIcon: isPrefixIcon
                 ? prefixIcon

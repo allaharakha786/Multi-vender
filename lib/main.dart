@@ -10,6 +10,7 @@ import 'view/screens/authentication/signIn/successfully_login.dart';
 import 'view/screens/authentication/signIn/welcomeback_signin.dart';
 import 'view/screens/authentication/signup_screen.dart';
 import 'view/screens/authentication/signIn/veri_code_screen.dart';
+import 'view/screens/proof_identity_document/preview_screen.dart';
 import 'view/screens/proof_identity_document/proof_identity_screen.dart';
 import 'view/screens/proof_identity_document/register_successfull.dart';
 import 'view/screens/proof_identity_document/upload_document_screen.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       designSize: Size(mediaQuerySize.width, mediaQuerySize.height),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: GetMaterialApp(debugShowCheckedModeBanner: false, home: BottomNavigationBarScreen()),
+      child: GetMaterialApp(debugShowCheckedModeBanner: false, home: VeriCodeScreen()),
     );
   }
 }

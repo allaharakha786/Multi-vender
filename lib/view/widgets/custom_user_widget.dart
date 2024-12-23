@@ -13,7 +13,7 @@ class CustomUserWidget extends StatelessWidget {
                     height: mediaQuerySize.height*0.125,
                     width: mediaQuerySize.width*0.8,
                     decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.black.withOpacity(0.07),
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
                         BoxShadow(
@@ -32,7 +32,7 @@ class CustomUserWidget extends StatelessWidget {
                             height: 60,
                             width: 60,
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Colors.black.withOpacity(0.07),
                               image: DecorationImage(image: AssetImage(img),fit: BoxFit.cover)
                             ),
                            
