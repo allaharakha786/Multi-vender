@@ -11,6 +11,7 @@ import 'view/screens/authentication/signIn/welcomeback_signin.dart';
 import 'view/screens/authentication/signup_screen.dart';
 import 'view/screens/authentication/signIn/veri_code_screen.dart';
 
+import 'view/screens/payment_confirmation_screens/payment_confirmation_screen.dart';
 import 'view/screens/payment_confirmation_screens/payment_successful_screen.dart';
 import 'view/screens/payment_confirmation_screens/transaction_history.dart';
 import 'view/screens/proof_identity_document/preview_screen.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
       debugShowCheckedModeBanner: false,      
       
-        home:  UploadDocumentScreen()
+        home:  PaymentConfirmationScreen()
       ),
     );
   }
