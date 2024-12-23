@@ -23,14 +23,7 @@ class SplashScreen extends StatelessWidget {
                 ),
                 child: SvgPicture.asset('assets/svg/splash_bg.svg'),
               ),
-            //   Container(
-            //   width: mediaQuerySize.width.w,
-            //   height: mediaQuerySize.height*0.5,
-            //   decoration: BoxDecoration(
-            //     color: Colors.amber,
-                
-            //   ),
-            // )
+           
               ]
             ),
              Positioned(bottom: 0,
@@ -42,10 +35,15 @@ class SplashScreen extends StatelessWidget {
                   //   width: mediaQuerySize.width.w,
                   //   child: SvgPicture.asset('assets/images/svg/splash_img.svg',fit: BoxFit.contain,)),
 
- Container(height: mediaQuerySize.height*0.6.h ,
-  width: mediaQuerySize.width.w,
- child:Image.asset('assets/images/splash_image.png',fit: BoxFit.cover,),
-),
+ Container(
+  height: mediaQuerySize.height*0.6.h ,
+  width: mediaQuerySize.width*1.w,
+ child:Padding(
+   padding: const EdgeInsets.only(top: 60),
+   
+   child: Image.asset('assets/images/splash_image.png',fit: BoxFit.cover,),
+ ),
+ ),
                 
 
                    Container(
@@ -92,46 +90,7 @@ class SplashScreen extends StatelessWidget {
         
       ),
       
-      // bottomSheet: Container(
-      //   //height: mediaQuerySize.height*0.3.h,
-      //   width: mediaQuerySize.width.w,
-      //   decoration: BoxDecoration(
-      //     color: Colors.white,
-      //     borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30)),
-      //     boxShadow: [
-      //       BoxShadow(
-      //         blurRadius: 4,
-      //         spreadRadius: 1,
-      //         offset: Offset(0, 3)
-      //       ),
-      //     ]
-      //   ),
-      //   child: SizedBox(
-
-      //     height: mediaQuerySize.height*0.5.h,
-      //     child: Padding(
-      //       padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-      //       child: Column(
-      //         children: [
-      //           Text('Welcome to Suneeb',style: TextStyle(color: Color(0xff4D4D4D),fontSize: 16,fontWeight: FontWeight.bold),),
-      //           SizedBox(height: 10,),
-      //           Text('From home repairs to creative projects, get it done with ease. On-demand skilled handymen and women at your fingertips. We call them Doers.', textAlign:TextAlign.center ,style: TextStyle(color: Colors.black.withOpacity(0.5),fontWeight: FontWeight.w400,fontSize: 13),),
-               
-      //           Container(
-      //             height: mediaQuerySize.height*0.07,
-      //             width: mediaQuerySize.width*0.8,
-      //             decoration: BoxDecoration(
-      //               color: AppColors.buttonColor,
-      //               borderRadius: BorderRadius.circular(10)
-      //             ),
-      //             child: TextButton(onPressed: (){},
-      //              child: Text('Get Started',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w600),)),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
+      
     );
   }
 }

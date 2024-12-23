@@ -16,7 +16,7 @@ class SignInScreen extends StatelessWidget {
         child: Column(
           children: [
         
-           ArrowBackButton(),
+           ArrowBackButton(color: Colors.black.withOpacity(0.07),),
           SizedBox(height: mediaQuerySize.height*0.06.h,),
            Center(child: Text('Verify your Email',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),)),
            SizedBox(height: mediaQuerySize.height*0.02.h,),
@@ -33,7 +33,7 @@ class SignInScreen extends StatelessWidget {
             },
             ),
              SizedBox(height: mediaQuerySize.height*0.03.h,),
-             CustomButton(name: 'Send Code'),
+             CustomButton(name: 'Send Code',  width: mediaQuerySize.width*0.9,),
 
           ],
         ),

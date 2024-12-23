@@ -23,7 +23,7 @@ class ProofIdentityScreen extends StatelessWidget {
         child: Column(
           children: [
         
-           ArrowBackButton(),
+           ArrowBackButton(color: Colors.black.withOpacity(0.07)),
           SizedBox(height: mediaQuerySize.height*0.06.h,),
            Center(child: Text('Proof of Identity',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),)),
            SizedBox(height: mediaQuerySize.height*0.02.h,),
@@ -52,7 +52,7 @@ class ProofIdentityScreen extends StatelessWidget {
               SizedBox(height: mediaQuerySize.height*0.05.h,),
             
              
-             CustomButton(name: 'Confirm'),
+             CustomButton(  width: mediaQuerySize.width*0.9,name: 'Confirm'),
          SizedBox(height: mediaQuerySize.height*0.03.h,),
         
             

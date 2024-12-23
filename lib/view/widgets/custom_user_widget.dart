@@ -13,14 +13,14 @@ class CustomUserWidget extends StatelessWidget {
                     height: mediaQuerySize.height*0.125,
                     width: mediaQuerySize.width*0.8,
                     decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.07),
+                    color: Colors.grey.withOpacity(0.09),
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
                         BoxShadow(
-                          
+                          color: Colors.white,
                           blurRadius: 5,
-                          spreadRadius: 0,
-                          offset: Offset(0, 2)
+                          spreadRadius:1,
+                          offset: Offset(0, 3)
                         )
                       ]
                     ),
@@ -32,6 +32,7 @@ class CustomUserWidget extends StatelessWidget {
                             height: 60,
                             width: 60,
                             decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
                               color: Colors.black.withOpacity(0.07),
                               image: DecorationImage(image: AssetImage(img),fit: BoxFit.cover)
                             ),

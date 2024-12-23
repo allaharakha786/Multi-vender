@@ -39,7 +39,7 @@ class RegisterSuccessfull extends StatelessWidget {
            ),
             SizedBox(height: mediaQuerySize.height*0.03.h,),
           
-             CustomButton(name: 'Continue'),
+             CustomButton(  width: mediaQuerySize.width*0.9,name: 'Continue'),
           
           ],
         ),

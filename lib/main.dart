@@ -9,11 +9,13 @@ import 'view/screens/authentication/signIn/successfully_login.dart';
 import 'view/screens/authentication/signIn/welcomeback_signin.dart';
 import 'view/screens/authentication/signup_screen.dart';
 import 'view/screens/authentication/signIn/veri_code_screen.dart';
+import 'view/screens/payment_confirmation_screens/payment_successful_screen.dart';
 import 'view/screens/proof_identity_document/preview_screen.dart';
 import 'view/screens/proof_identity_document/proof_identity_screen.dart';
 import 'view/screens/proof_identity_document/register_successfull.dart';
 import 'view/screens/proof_identity_document/upload_document_screen.dart';
 import 'view/screens/splash/role_screen.dart';
+import 'view/widgets/image_picker_widget.dart';
 import 'view/widgets/upload_document_widget.dart';
 
 void main() {
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
       debugShowCheckedModeBanner: false,      
       
-        home:  VeriCodeScreen()
+        home:  PaymentSuccessfulScreen()
       ),
     );
   }

@@ -129,7 +129,9 @@ Customfield(hintText: 'Phone Number',
                     SizedBox(height: mediaQuerySize.height*0.03.h,),
             TermsAndConditionsText(),
             SizedBox(height: mediaQuerySize.height*0.03.h,),
-            CustomButton(name: 'Sign up as Posters', onTap: () {
+            CustomButton(
+                width: mediaQuerySize.width*0.9,
+              name: 'Sign up as Posters', onTap: () {
               if(formKey.currentState!.validate()??false){
                 print('yes');
             
