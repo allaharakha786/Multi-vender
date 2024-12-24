@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
 import 'package:multi_vender/view/screens/authentication/verification_code_screen.dart';
+import 'package:multi_vender/view/screens/bottom_navigation_bar.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
@@ -187,7 +188,9 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.grey),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => BottomNavigationBarScreen());
+                        },
                         child: Text(
                           'Log in',
                           style: TextStyle(color: Color(0xffFFCC00), fontSize: 18, fontWeight: FontWeight.bold),

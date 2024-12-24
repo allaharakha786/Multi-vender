@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:multi_vender/controllers/utils/app_colors.dart';
 import 'package:multi_vender/controllers/utils/app_textstyles.dart';
+import 'package:multi_vender/view/screens/choose_payment_method.dart';
+import 'package:multi_vender/view/screens/choose_account.dart';
 import 'package:multi_vender/view/widgets/arrow_back_button.dart';
 import 'package:multi_vender/view/widgets/common_widgets.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
@@ -98,7 +101,11 @@ class JobInformation extends StatelessWidget {
                           SizedBox(
                             height: mediaQuerySize.height * 0.025.h,
                           ),
-                          CustomButton(name: 'Post a Job')
+                          CustomButton(
+                              onTap: () {
+                                Get.to(() => ChoosePaymentMethod());
+                              },
+                              name: 'Post a Job')
                         ],
                       ),
                     ),

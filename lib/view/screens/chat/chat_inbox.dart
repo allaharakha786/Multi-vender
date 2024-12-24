@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:multi_vender/view/widgets/custom_user_widget.dart';
+import 'package:get/get.dart';
+import 'package:multi_vender/view/screens/chat/chat_conversation.dart';
 
 class ChatInbox extends StatelessWidget {
   const ChatInbox({super.key});
@@ -23,8 +24,7 @@ class ChatInbox extends StatelessWidget {
                   width: 40,
                   // height: mediaQuerySize.height*0.1.h,
                   // width: mediaQuerySize.width*0.06.w,
-                  decoration: BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
+                  decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
                   child: IconButton(
                       onPressed: () {},
                       icon: Icon(
@@ -84,11 +84,7 @@ class ChatInbox extends StatelessWidget {
                   margin: EdgeInsets.only(top: 10),
                   height: mediaQuerySize.height.h,
                   width: mediaQuerySize.width.w,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20))),
+                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -101,18 +97,58 @@ class ChatInbox extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              buildUserRounded("assets/images/Ellipse 19.png"),
-                              buildUserRounded("assets/images/Ellipse 20.png"),
-                              buildUserRounded("assets/images/Ellipse 21.png"),
-                              buildUserRounded("assets/images/Ellipse 19.png"),
-                              buildUserRounded("assets/images/Ellipse 20.png"),
-                              buildUserRounded("assets/images/Ellipse 21.png"),
-                              buildUserRounded("assets/images/Ellipse 19.png"),
-                              buildUserRounded("assets/images/Ellipse 20.png"),
-                              buildUserRounded("assets/images/Ellipse 21.png"),
-                              buildUserRounded("assets/images/Ellipse 19.png"),
-                              buildUserRounded("assets/images/Ellipse 20.png"),
-                              buildUserRounded("assets/images/Ellipse 21.png"),
+                              buildUserRounded(
+                                "assets/images/Ellipse 19.png",
+                                () {
+                                  Get.to(() => ChatScreen());
+                                },
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 20.png",
+                                () {
+                                  Get.to(() => ChatScreen());
+                                },
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 21.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 19.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 20.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 21.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 19.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 20.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 21.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 19.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 20.png",
+                                () {},
+                              ),
+                              buildUserRounded(
+                                "assets/images/Ellipse 21.png",
+                                () {},
+                              ),
                             ],
                           ),
                         ),
@@ -124,10 +160,7 @@ class ChatInbox extends StatelessWidget {
                         margin: EdgeInsets.only(left: 20),
                         child: Text(
                           "Messages",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
+                          style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
                       SizedBox(
@@ -196,21 +229,24 @@ class ChatInbox extends StatelessWidget {
     );
   }
 
-  static buildUserRounded(String pic) {
+  static buildUserRounded(String pic, void Function()? onTap) {
     return Stack(
       children: [
-        Container(
-          width: 50,
-          height: 50,
-          margin: EdgeInsets.symmetric(horizontal: 5),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage(pic),
-              //  NetworkImage(
-              //   "https://via.placeholder.com/150",
-              // ),
-              fit: BoxFit.cover,
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            width: 50,
+            height: 50,
+            margin: EdgeInsets.symmetric(horizontal: 5),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage(pic),
+                //  NetworkImage(
+                //   "https://via.placeholder.com/150",
+                // ),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

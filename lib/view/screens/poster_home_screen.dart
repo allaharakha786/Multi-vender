@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:multi_vender/controllers/utils/app_colors.dart';
 import 'package:multi_vender/controllers/utils/app_textstyles.dart';
+import 'package:multi_vender/view/screens/dashboard.dart';
+import 'package:multi_vender/view/screens/job_information.dart';
+import 'package:multi_vender/view/screens/notification/notification_screen2.dart';
 import 'package:multi_vender/view/widgets/common_widgets.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
@@ -49,15 +53,25 @@ class PosterHomeScreen extends StatelessWidget {
                       ],
                     ),
                     Spacer(),
-                    Container(
-                      height: mediaQuerySize.height * 0.07.h,
-                      width: mediaQuerySize.width * 0.12.w,
-                      decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(fit: BoxFit.contain, image: AssetImage('assets/images/profile_image.png'))),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => DashboadScreen());
+                      },
+                      child: Container(
+                        height: mediaQuerySize.height * 0.07.h,
+                        width: mediaQuerySize.width * 0.12.w,
+                        decoration: BoxDecoration(shape: BoxShape.circle, image: DecorationImage(fit: BoxFit.contain, image: AssetImage('assets/images/profile_image.png'))),
+                      ),
                     ),
-                    Container(
-                      height: mediaQuerySize.height * 0.07.h,
-                      width: mediaQuerySize.width * 0.12.w,
-                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/notification_icon.png'))),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => NotificationScreen2());
+                      },
+                      child: Container(
+                        height: mediaQuerySize.height * 0.07.h,
+                        width: mediaQuerySize.width * 0.12.w,
+                        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/notification_icon.png'))),
+                      ),
                     )
                   ],
                 ),
@@ -136,7 +150,11 @@ class PosterHomeScreen extends StatelessWidget {
                               },
                             ),
                           ),
-                          CustomButton(name: 'Post a job'),
+                          CustomButton(
+                              onTap: () {
+                                Get.to(() => JobInformation());
+                              },
+                              name: 'Post a job'),
                           SizedBox(
                             height: mediaQuerySize.height * 0.015.h,
                           ),

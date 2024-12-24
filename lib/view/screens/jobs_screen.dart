@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:multi_vender/controllers/utils/app_colors.dart';
 import 'package:multi_vender/controllers/utils/app_textstyles.dart';
-import 'package:multi_vender/view/screens/payment_confirmation_screens/payment_confirmation_screen.dart';
 import 'package:multi_vender/view/widgets/arrow_back_button.dart';
+import 'package:multi_vender/view/widgets/common_widgets.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
-class ChooseAccount extends StatelessWidget {
-  ChooseAccount({super.key});
+class JobScreen extends StatelessWidget {
+  JobScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +35,19 @@ class ChooseAccount extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: mediaQuerySize.width * 0.14.w,
+                    width: mediaQuerySize.width * 0.25.w,
                   ),
                   Text(
-                    'Choose Account',
+                    'Jobs',
                     style: AppTextstyles.simpleTextBold(),
                   )
                 ],
               ),
               SizedBox(
-                height: mediaQuerySize.height * 0.03.h,
+                height: mediaQuerySize.height * 0.02.h,
               ),
               Expanded(
                 child: Container(
-                  // height: mediaQuerySize.height,
                   width: mediaQuerySize.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
@@ -61,27 +59,18 @@ class ChooseAccount extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomField(text: 'Full Name'),
                           SizedBox(
-                            height: mediaQuerySize.height * 0.015.h,
+                            height: mediaQuerySize.height * 0.03.h,
                           ),
-                          CustomField(text: 'Card Number'),
-                          SizedBox(
-                            height: mediaQuerySize.height * 0.015.h,
-                          ),
-                          CustomField(text: 'Expairation date'),
-                          SizedBox(
-                            height: mediaQuerySize.height * 0.015.h,
-                          ),
-                          CustomField(text: 'CVV'),
-                          SizedBox(
-                            height: mediaQuerySize.height * 0.03,
-                          ),
-                          CustomButton(
-                              onTap: () {
-                                Get.to(() => PaymentConfirmationScreen());
+                          CommonWidgets.commonRow('New Jobs', 'View all'),
+                          Column(
+                            children: List.generate(
+                              5,
+                              (index) {
+                                return CommonWidgets.CommonJobTemplete(mediaQuerySize: mediaQuerySize);
                               },
-                              name: 'Next')
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -94,6 +83,4 @@ class ChooseAccount extends StatelessWidget {
       ),
     );
   }
-
-  List<String> images = ['assets/images/bank_transfer.png', 'assets/images/easy_paisa.png', 'assets/images/jazz_cash.png'];
 }

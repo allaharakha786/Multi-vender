@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:multi_vender/view/screens/choose_account.dart';
-import 'package:multi_vender/view/screens/choose_payment_method.dart';
-import 'package:multi_vender/view/screens/dashboard.dart';
-import 'package:multi_vender/view/screens/doers_home_screen.dart';
-import 'package:multi_vender/view/screens/job_information.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/view/screens/chat/chat_inbox.dart';
+
+import 'package:multi_vender/view/screens/jobs_screen.dart';
+import 'package:multi_vender/view/screens/notification/notification_screen.dart';
 import 'package:multi_vender/view/screens/poster_home_screen.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class BottomNavigationBarScreen extends StatefulWidget {
 }
 
 RxInt selectedIndex = 0.obs;
-List<Widget> screens = [PosterHomeScreen(), ChoosePaymentMethod()];
+List<Widget> screens = [PosterHomeScreen(), JobScreen(), ChatInbox(), NotificationScreen()];
 
 class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   @override
@@ -26,11 +27,24 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
       }),
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
+            selectedItemColor: AppColors.buttonColor,
+            unselectedItemColor: Colors.grey,
+            type: BottomNavigationBarType.fixed,
             onTap: (value) {
               selectedIndex.value = value;
             },
             currentIndex: selectedIndex.value,
-            items: [BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'), BottomNavigationBarItem(label: 'Jobss', icon: Icon(Icons.access_time))]);
+            items: [
+              BottomNavigationBarItem(icon: SvgPicture.asset(color: selectedIndex.value == 0 ? AppColors.buttonColor : Colors.grey, 'assets/svg/home_icon.svg'), label: 'Home'),
+              BottomNavigationBarItem(label: 'Jobs', icon: SvgPicture.asset(color: selectedIndex.value == 1 ? AppColors.buttonColor : Colors.grey, 'assets/svg/jobs_icon.svg')),
+              BottomNavigationBarItem(
+                  label: 'Message',
+                  icon: SvgPicture.asset(
+                    'assets/svg/messages_icon.svg',
+                    color: selectedIndex.value == 2 ? AppColors.buttonColor : Colors.grey,
+                  )),
+              BottomNavigationBarItem(label: 'settings', icon: Icon(Icons.settings))
+            ]);
       }),
     );
   }

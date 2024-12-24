@@ -4,7 +4,6 @@ import 'package:multi_vender/controllers/utils/app_colors.dart';
 import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/view/widgets/arrow_back_button.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
-import 'package:multi_vender/view/widgets/custom_button.dart';
 
 class DashboadScreen extends StatelessWidget {
   DashboadScreen({super.key});
@@ -31,11 +30,14 @@ class DashboadScreen extends StatelessWidget {
                   backgroundColor: AppColors.whiteColor,
                 ),
               ),
-              CustomField(
-                color: Colors.white,
-                text: 'search for doers',
-                isPrefixIcon: true,
-                prefixIcon: Icon(Icons.search),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.04),
+                child: CustomField(
+                  color: Colors.white,
+                  text: 'search for doers',
+                  isPrefixIcon: true,
+                  prefixIcon: Icon(Icons.search),
+                ),
               ),
               SizedBox(
                 height: mediaQuerySize.height * 0.025.h,

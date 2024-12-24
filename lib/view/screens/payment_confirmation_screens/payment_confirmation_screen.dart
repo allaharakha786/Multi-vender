@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:get/get.dart';
 import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/view/screens/payment_confirmation_screens/payment_successful_screen.dart';
 import 'package:multi_vender/view/widgets/arrow_back_button.dart';
-import 'package:multi_vender/view/widgets/customField.dart';
 
 import '../../widgets/custom_button.dart';
 import '../../widgets/job_name_widget.dart';
@@ -38,7 +38,7 @@ class PaymentConfirmationScreen extends StatelessWidget {
                     ),
                     //  SizedBox(width: mediaQuerySize.width*0.05.w,),
                     Padding(
-                      padding: const EdgeInsets.only(top: 46, left: 25),
+                      padding: const EdgeInsets.only(left: 25),
                       child: Text(
                         'Payment Confirmation',
                         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
@@ -145,7 +145,11 @@ class PaymentConfirmationScreen extends StatelessWidget {
                       SizedBox(
                         height: mediaQuerySize.height * 0.03.h,
                       ),
-                      CustomButton(name: 'Confirm Payment')
+                      CustomButton(
+                          onTap: () {
+                            Get.to(() => PaymentSuccessfulScreen());
+                          },
+                          name: 'Confirm Payment')
                     ]),
                   ),
                 ),

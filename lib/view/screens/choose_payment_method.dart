@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:multi_vender/controllers/utils/app_colors.dart';
 import 'package:multi_vender/controllers/utils/app_textstyles.dart';
+import 'package:multi_vender/view/screens/choose_account.dart';
 import 'package:multi_vender/view/widgets/arrow_back_button.dart';
-import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
 class ChoosePaymentMethod extends StatelessWidget {
@@ -59,23 +60,26 @@ class ChoosePaymentMethod extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomField(text: 'Full Name'),
-                          SizedBox(
-                            height: mediaQuerySize.height * 0.015.h,
+                          GridView.builder(
+                            itemCount: 3,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.black12, image: DecorationImage(fit: BoxFit.cover, image: AssetImage(images[index]))),
+                              );
+                            },
                           ),
-                          CustomField(text: 'Card Number'),
-                          SizedBox(
-                            height: mediaQuerySize.height * 0.015.h,
-                          ),
-                          CustomField(text: 'Expairation date'),
-                          SizedBox(
-                            height: mediaQuerySize.height * 0.015.h,
-                          ),
-                          CustomField(text: 'CVV'),
                           SizedBox(
                             height: mediaQuerySize.height * 0.03,
                           ),
-                          CustomButton(name: 'Next')
+                          CustomButton(
+                              onTap: () {
+                                Get.to(() => ChooseAccount());
+                              },
+                              name: 'Next')
                         ],
                       ),
                     ),
