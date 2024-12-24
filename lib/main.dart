@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/view/screens/chat/chat_conversation.dart';
+import 'package:multi_vender/view/screens/chat/chat_inbox.dart';
+import 'package:multi_vender/view/screens/notification/notification_screen.dart';
+import 'package:multi_vender/view/screens/notification/notification_screen2.dart';
 import 'package:multi_vender/view/screens/splash/splash_screen.dart';
 
 import 'view/screens/authentication/forgot_password_screen.dart';
@@ -25,17 +29,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-  Size mediaQuerySize = MediaQuery.of(context).size;
-    
+    Size mediaQuerySize = MediaQuery.of(context).size;
+
     return ScreenUtilInit(
-      designSize:Size(mediaQuerySize.width,mediaQuerySize.height),
-    minTextAdapt: true,
-    splitScreenMode: true,
-      child: GetMaterialApp(
-      debugShowCheckedModeBanner: false,      
-      
-        home:  UploadDocumentScreen()
-      ),
+      designSize: Size(mediaQuerySize.width, mediaQuerySize.height),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child:
+          GetMaterialApp(debugShowCheckedModeBanner: false, home: ChatScreen()),
     );
   }
 }
