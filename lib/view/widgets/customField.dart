@@ -11,18 +11,9 @@ class CustomField extends StatelessWidget {
   Widget? suffixIcon;
   Color? color;
   String? Function(String?)? validator;
-  final String text;
+  final String? text;
 
-  CustomField({
-    super.key,
-    required this.text,
-    this.suffixIcon,
-    this.isPrefixIcon = false,
-    this.isSuffixIcon = false,
-    this.prefixIcon,
-    this.color,
-    this.validator,
-  });
+  CustomField({super.key, this.text, this.suffixIcon, this.isPrefixIcon = false, this.isSuffixIcon = false, this.prefixIcon, this.color, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +31,13 @@ class CustomField extends StatelessWidget {
         child: TextFormField(
           validator: validator,
           decoration: InputDecoration(
-            prefixIcon: isPrefixIcon ? prefixIcon : null,
-            suffixIcon: isSuffixIcon ? suffixIcon : null,
-            contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 13),
+            prefixIcon: isPrefixIcon
+                ? prefixIcon
+                : SizedBox(
+                    width: 0,
+                  ),
+            suffixIcon: isSuffixIcon ? suffixIcon : SizedBox(), // Show icon only if it's not null
+            contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 18),
             hintText: text,
             border: InputBorder.none,
             hintStyle: TextStyle(color: Colors.grey),

@@ -63,12 +63,14 @@ Color(0xff115740),        Colors.white,
                    SizedBox(height: 60,),
 
                     CustomUserWidget(
-                    secText: 'You can apply on to the job',
-                    text: 'Doer', img: 'assets/images/doer_image.png'),
-                    SizedBox(height: 20,),
-                   CustomUserWidget(
                     secText: 'You can post a job',
-                    text: 'poster', img: 'assets/images/poster_image.png'),
+                    text: 'Poster', img: 'assets/images/postr_image.png'),
+                   SizedBox(height: 20,),
+                    CustomUserWidget(
+                    secText: 'You can apply on to the job',
+                    text: 'Doer', img: 'assets/images/doerr_image.png'),
+                  
+                  
                     
                   ],
                 ),

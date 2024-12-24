@@ -7,6 +7,8 @@ class CustomButton extends StatelessWidget {
   Color color;
   TextStyle textStyle;
   Function()? onTap;
+  final double width;
+  final bool isEnabled;
 
   CustomButton(
       {super.key,
@@ -17,7 +19,7 @@ class CustomButton extends StatelessWidget {
         fontSize: 16,
         fontWeight: FontWeight.w600,
       ),
-      this.onTap});
+      this.onTap, this.width=300,this.isEnabled=false});
 
   @override
   Widget build(BuildContext context) {

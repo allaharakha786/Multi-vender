@@ -12,17 +12,16 @@ class ArrowBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Size mediaQuerySize = MediaQuery.of(context).size;
     return Align(
-      alignment: Alignment.centerLeft,
-      child: Container(
-        height: mediaQuerySize.height * 0.06.h,
-        width: mediaQuerySize.width * 0.12.w,
-        decoration: BoxDecoration(color: backgroundColor ?? Colors.black.withOpacity(0.07), shape: BoxShape.circle),
-        child: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: Icon(Icons.arrow_back, color: arrowColor ?? Colors.grey)),
-      ),
-    );
+        alignment: Alignment.centerLeft,
+        child: Container(
+          height: mediaQuerySize.height * 0.06.h,
+          width: mediaQuerySize.width * 0.12.w,
+          decoration: BoxDecoration(color: backgroundColor ?? Colors.black.withOpacity(0.07), shape: BoxShape.circle),
+          child: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(Icons.arrow_back, color: arrowColor ?? Colors.grey)),
+        ));
   }
 }

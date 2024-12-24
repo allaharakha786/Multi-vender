@@ -64,6 +64,16 @@ class ForgotPasswordScreen extends StatelessWidget {
               SizedBox(
                 height: mediaQuerySize.height * 0.03.h,
               ),
+               SizedBox(height: mediaQuerySize.height*0.03.h,),
+               CustomButton(  width: mediaQuerySize.width*0.9,
+               name: 'Send Reset Link',
+               onTap: () {
+                 if(formKey.currentState!.validate()??false){
+                  
+                 }
+               },
+               ),
+              SizedBox(height: mediaQuerySize.height*0.03.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
