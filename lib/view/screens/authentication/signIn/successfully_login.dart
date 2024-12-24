@@ -29,7 +29,7 @@ class SuccessfullyLogin extends StatelessWidget {
            ),
             SizedBox(height: mediaQuerySize.height*0.03.h,),
           
-             CustomButton(name: 'Continue'),
+             CustomButton(name: 'Continue',  width: mediaQuerySize.width*0.9,),
             SizedBox(height: mediaQuerySize.height*0.03.h,),
            TextButton(onPressed: (){},
                      child: Text('Back to Login',style: TextStyle(color: Color(0xffFFCC00),fontSize: 16,fontWeight: FontWeight.bold),)),

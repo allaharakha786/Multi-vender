@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 
 import '../../widgets/arrow_back_button.dart';
@@ -12,6 +13,9 @@ class ProofIdentityScreen extends StatelessWidget {
 
   @override
  Widget build(BuildContext context) {
+   RxBool isChecked1 = true.obs;
+    RxBool isChecked2 = false.obs;
+    RxBool isChecked3 = false.obs;
     Size mediaQuerySize = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(child: Padding(
@@ -19,7 +23,7 @@ class ProofIdentityScreen extends StatelessWidget {
         child: Column(
           children: [
         
-           ArrowBackButton(),
+           ArrowBackButton(color: Colors.black.withOpacity(0.07)),
           SizedBox(height: mediaQuerySize.height*0.06.h,),
            Center(child: Text('Proof of Identity',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600),)),
            SizedBox(height: mediaQuerySize.height*0.02.h,),
@@ -35,15 +39,20 @@ class ProofIdentityScreen extends StatelessWidget {
              child: Text('Choose the type of document you would like to upload for verification. ',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Colors.grey),),
            ),
             SizedBox(height: mediaQuerySize.height*0.02.h,),
-             CircleCheckBox(text: 'Email Address',),
+             CircleCheckBox(text: 'Email Address',
+             isChecked: isChecked1,
+             onChanged: (bool value) {
+            print("Checkbox state: $value"); // Handle state change
+          },
+          ),
               SizedBox(height: mediaQuerySize.height*0.02.h,),
-             CircleCheckBox(text: 'National ID',),
+             CircleCheckBox(text: 'National ID',isChecked: isChecked2),
               SizedBox(height: mediaQuerySize.height*0.02.h,),
-             CircleCheckBox(text: 'Character Certificate',),
+             CircleCheckBox(text: 'Character Certificate',isChecked: isChecked3,),
               SizedBox(height: mediaQuerySize.height*0.05.h,),
             
              
-             CustomButton(name: 'Confirm'),
+             CustomButton(  width: mediaQuerySize.width*0.9,name: 'Confirm'),
          SizedBox(height: mediaQuerySize.height*0.03.h,),
         
             

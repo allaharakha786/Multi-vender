@@ -25,7 +25,7 @@ class _TermsAndConditionsTextState extends State<TermsAndConditionsText> {
               isChecked
                   ? Icons.check_box_rounded
                   : Icons.check_box_outline_blank_rounded,
-              color: isChecked ? Colors.grey : Colors.grey.withOpacity(0.5),
+              color: isChecked ? Colors.black.withOpacity(0.07) : Colors.grey.withOpacity(0.5),
               size: 24,
             ),
           ),
