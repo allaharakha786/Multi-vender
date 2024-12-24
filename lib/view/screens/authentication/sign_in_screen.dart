@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
-import '../../../widgets/arrow_back_button.dart';
+import '../../widgets/arrow_back_button.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});

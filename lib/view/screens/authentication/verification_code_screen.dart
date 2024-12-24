@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/view/screens/proof_identity_document/proof_identity_screen.dart';
 
-import '../../../../controllers/getxControllers/otp_verifi_cpntroller.dart';
-import '../../../widgets/arrow_back_button.dart';
-import '../../../widgets/custom_button.dart';
+import '../../../controllers/getxControllers/otp_verifi_cpntroller.dart';
+import '../../widgets/arrow_back_button.dart';
+import '../../widgets/custom_button.dart';
 
-class VeriCodeScreen extends StatelessWidget {
-  VeriCodeScreen({super.key});
+class VerificationCodeScreen extends StatelessWidget {
+  VerificationCodeScreen({super.key});
 
   final VerificationController controller = Get.put(VerificationController());
 
@@ -60,7 +61,7 @@ class VeriCodeScreen extends StatelessWidget {
                   isEnabled: controller.isButtonEnabled.value,
                   onTap: controller.isButtonEnabled.value
                       ? () {
-                          print('Verification code confirmed!');
+                          Get.to(() => ProofIdentityScreen());
                         }
                       : null,
                 ),

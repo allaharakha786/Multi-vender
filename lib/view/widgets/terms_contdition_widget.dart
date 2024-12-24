@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
 
 class TermsAndConditionsText extends StatefulWidget {
   @override
@@ -22,10 +23,8 @@ class _TermsAndConditionsTextState extends State<TermsAndConditionsText> {
               });
             },
             child: Icon(
-              isChecked
-                  ? Icons.check_box_rounded
-                  : Icons.check_box_outline_blank_rounded,
-              color: isChecked ? Colors.black.withOpacity(0.07) : Colors.grey.withOpacity(0.5),
+              isChecked ? Icons.check_box_rounded : Icons.check_box_outline_blank_rounded,
+              color: isChecked ? AppColors.buttonColor : Colors.grey.withOpacity(0.5),
               size: 24,
             ),
           ),
@@ -50,11 +49,11 @@ class _TermsAndConditionsTextState extends State<TermsAndConditionsText> {
                           decoration: TextDecoration.underline,
                         ),
                       ),
-                       TextSpan(
+                      TextSpan(
                         text: 'and ',
                         style: TextStyle(color: Colors.grey),
                       ),
-                       TextSpan(
+                      TextSpan(
                         text: 'Privacy Policy',
                         style: TextStyle(
                           color: Colors.grey,
@@ -62,12 +61,9 @@ class _TermsAndConditionsTextState extends State<TermsAndConditionsText> {
                           decoration: TextDecoration.underline,
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
-            
-               
               ],
             ),
           ),

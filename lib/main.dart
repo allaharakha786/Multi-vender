@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'view/screens/payment_confirmation_screens/payment_confirmation_screen.dart';
+import 'package:multi_vender/view/screens/splash/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       designSize: Size(mediaQuerySize.width, mediaQuerySize.height),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: GetMaterialApp(debugShowCheckedModeBanner: false, home: PaymentConfirmationScreen()),
+      child: GetMaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()),
     );
   }
 }

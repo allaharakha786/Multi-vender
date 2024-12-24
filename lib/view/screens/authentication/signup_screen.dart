@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
+import 'package:multi_vender/view/screens/authentication/verification_code_screen.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
@@ -65,7 +66,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: mediaQuerySize.height * 0.03.h,
                 ),
                 CustomField(
-                  text: 'Phone Number',
+                  text: '+92 | XXX-XXXXXXX',
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'please enter the following field';
@@ -73,48 +74,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     return null;
                   },
                 ),
-
-                SizedBox(
-                  height: mediaQuerySize.height * 0.03.h,
-                ),
-                CustomField(
-                  text: 'country',
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'please enter the following field';
-                    }
-                    return null;
-                  },
-                  isSuffixIcon: true,
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      showCountryPicker(
-                        context: context,
-                        showPhoneCode: true, // Show country code
-                        onSelect: (Country country) {
-                          setState(() {
-                            _selectedCountry = country;
-                          });
-                        },
-                      );
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min, // Ensures the Row fits within the suffixIcon constraints
-                      children: [
-                        Text(
-                          _selectedCountry != null ? "${_selectedCountry!.flagEmoji} +${_selectedCountry!.phoneCode}" : "Select",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                          ),
-                        ),
-                        Icon(Icons.arrow_drop_down, color: Colors.grey),
-                      ],
-                    ),
-                  ),
-                ),
-
-                //  CountryPickerContainer(),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
                 ),
@@ -148,7 +107,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
                 ),
@@ -159,10 +117,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 CustomButton(
                   name: 'Sign up as Posters',
                   onTap: () {
-                    if (formKey.currentState!.validate() ?? false) {
-                      print('yes');
+                    if (formKey.currentState!.validate()) {
+                      Get.to(() => VerificationCodeScreen());
                     }
-                    print('no');
                   },
                 ),
                 SizedBox(
@@ -236,6 +193,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           style: TextStyle(color: Color(0xffFFCC00), fontSize: 18, fontWeight: FontWeight.bold),
                         ))
                   ],
+                ),
+                SizedBox(
+                  height: mediaQuerySize.height * 0.05,
                 )
               ],
             ),

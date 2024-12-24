@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:multi_vender/view/screens/authentication/successfully_reset_password.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({super.key});
-
+  ForgotPasswordScreen({super.key});
+  GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formKey = GlobalKey();
     Size mediaQuerySize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -56,24 +58,17 @@ class ForgotPasswordScreen extends StatelessWidget {
                 height: mediaQuerySize.height * 0.03.h,
               ),
               CustomButton(
+                width: mediaQuerySize.width * 0.9,
                 name: 'Send Reset Link',
                 onTap: () {
-                  if (formKey.currentState!.validate() ?? false) {}
+                  if (formKey.currentState!.validate() ?? false) {
+                    Get.to(() => SuccessfullyPasswordResetted());
+                  }
                 },
               ),
               SizedBox(
                 height: mediaQuerySize.height * 0.03.h,
               ),
-               SizedBox(height: mediaQuerySize.height*0.03.h,),
-               CustomButton(  width: mediaQuerySize.width*0.9,
-               name: 'Send Reset Link',
-               onTap: () {
-                 if(formKey.currentState!.validate()??false){
-                  
-                 }
-               },
-               ),
-              SizedBox(height: mediaQuerySize.height*0.03.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

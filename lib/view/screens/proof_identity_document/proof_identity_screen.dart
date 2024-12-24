@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/view/screens/proof_identity_document/preview_screen.dart';
 
 import '../../widgets/arrow_back_button.dart';
 import '../../widgets/circle_checkbox_text.dart';
@@ -53,16 +54,6 @@ class ProofIdentityScreen extends StatelessWidget {
             SizedBox(
               height: mediaQuerySize.height * 0.02.h,
             ),
-            CircleCheckBox(
-              text: 'Email Address',
-              isChecked: isChecked1,
-              onChanged: (bool value) {
-                print("Checkbox state: $value"); // Handle state change
-              },
-            ),
-            SizedBox(
-              height: mediaQuerySize.height * 0.02.h,
-            ),
             CircleCheckBox(text: 'National ID', isChecked: isChecked2),
             SizedBox(
               height: mediaQuerySize.height * 0.02.h,
@@ -74,7 +65,12 @@ class ProofIdentityScreen extends StatelessWidget {
             SizedBox(
               height: mediaQuerySize.height * 0.05.h,
             ),
-            CustomButton(width: mediaQuerySize.width * 0.9, name: 'Confirm'),
+            CustomButton(
+                onTap: () {
+                  Get.to(() => PreviewScreen());
+                },
+                width: mediaQuerySize.width * 0.9,
+                name: 'Continue'),
             SizedBox(
               height: mediaQuerySize.height * 0.03.h,
             ),

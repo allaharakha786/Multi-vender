@@ -1,49 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
-import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
 
 class CustomField extends StatelessWidget {
-  bool isPrefixIcon;
-  bool isSuffixIcon;
-  Widget? prefixIcon;
-  Widget? suffixIcon;
-  Color? color;
-  String? Function(String?)? validator;
+  final bool isPrefixIcon;
+  final bool isSuffixIcon;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final Color? color;
+  final String? Function(String?)? validator;
   final String? text;
 
-  CustomField({super.key, this.text, this.suffixIcon, this.isPrefixIcon = false, this.isSuffixIcon = false, this.prefixIcon, this.color, this.validator});
+  CustomField({
+    super.key,
+    this.text,
+    this.suffixIcon,
+    this.isPrefixIcon = false,
+    this.isSuffixIcon = false,
+    this.prefixIcon,
+    this.color,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final PasswordController passwordController = Get.put(PasswordController());
-
-    Size mediaQuerySize = MediaQuery.of(context).size;
-    return Container(
-      width: mediaQuerySize.width * 0.9.w,
-      decoration: BoxDecoration(
-        color: color ?? Colors.grey.withOpacity(0.3),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: TextFormField(
-          validator: validator,
-          decoration: InputDecoration(
-            prefixIcon: isPrefixIcon
-                ? prefixIcon
-                : SizedBox(
-                    width: 0,
-                  ),
-            suffixIcon: isSuffixIcon ? suffixIcon : SizedBox(), // Show icon only if it's not null
-            contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 18),
-            hintText: text,
-            border: InputBorder.none,
-            hintStyle: TextStyle(color: Colors.grey),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: TextFormField(
+        validator: validator,
+        decoration: InputDecoration(
+          fillColor: color ?? Colors.black.withOpacity(0.07),
+          filled: true,
+          prefixIcon: isPrefixIcon ? prefixIcon : null,
+          suffixIcon: isSuffixIcon ? suffixIcon : const SizedBox(),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
+          hintText: text,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12), // Rounded corners
+            borderSide: BorderSide.none, // Removes the border line
           ),
-          style: TextStyle(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12), // Rounded corners
+            borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12), // Rounded corners
+            borderSide: const BorderSide(color: Colors.blue, width: 2), // Customize focused border
+          ),
+          hintStyle: const TextStyle(color: Colors.grey),
         ),
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }

@@ -1,9 +1,8 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:multi_vender/view/screens/proof_identity_document/register_successfull.dart';
 import '../../widgets/custom_circle.dart';
 import '../../widgets/image_picker_widget.dart';
 import '../../widgets/arrow_back_button.dart';
@@ -23,11 +22,10 @@ class PreviewScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
             child: Column(
               children: [
-                 ArrowBackButton(color: Colors.black.withOpacity(0.07)),
+                ArrowBackButton(backgroundColor: Colors.black.withOpacity(0.07)),
                 SizedBox(height: mediaQuerySize.height * 0.05.h),
-
-                                OnboardingDots(currentIndex: 2),
-                                 SizedBox(height: mediaQuerySize.height * 0.05.h),
+                OnboardingDots(currentIndex: 2),
+                SizedBox(height: mediaQuerySize.height * 0.05.h),
                 Center(
                   child: Text(
                     'Preview',
@@ -66,7 +64,7 @@ class PreviewScreen extends StatelessWidget {
                 ),
                 SizedBox(height: mediaQuerySize.height * 0.02.h),
                 ImagePickerWidget(
-                  imageSource: ImageSource.camera,
+                  imageSource: ImageSource.gallery,
                   buttonText: "File Upload",
                   buttonIcon: Icons.upload_file,
                 ),
@@ -89,7 +87,12 @@ class PreviewScreen extends StatelessWidget {
                   buttonIcon: Icons.upload_file,
                 ),
                 SizedBox(height: mediaQuerySize.height * 0.05.h),
-                 CustomButton(  width: mediaQuerySize.width*0.9,name: 'Upload'),
+                CustomButton(
+                    onTap: () {
+                      Get.to(() => RegisterSuccessfull());
+                    },
+                    width: mediaQuerySize.width * 0.9,
+                    name: 'Upload'),
                 SizedBox(height: mediaQuerySize.height * 0.08.h),
               ],
             ),
@@ -99,4 +102,3 @@ class PreviewScreen extends StatelessWidget {
     );
   }
 }
-

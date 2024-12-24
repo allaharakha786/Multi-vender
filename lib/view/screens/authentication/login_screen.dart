@@ -2,18 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
+import 'package:multi_vender/view/screens/authentication/forgot_password_screen.dart';
+import 'package:multi_vender/view/screens/bottom_navigation_bar.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
-import '../../../widgets/social_mediaicon_widget.dart';
+import '../../widgets/social_mediaicon_widget.dart';
 
-class WelcomebackSignin extends StatelessWidget {
-  const WelcomebackSignin({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+GlobalKey<FormState> formKey = GlobalKey();
+PasswordController passwordController = Get.put(PasswordController());
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> formKey = GlobalKey();
-    PasswordController passwordController = Get.put(PasswordController());
     Size mediaQuerySize = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -89,17 +97,21 @@ class WelcomebackSignin extends StatelessWidget {
                         ),
                       ],
                     ),
-                    TextButton(onPressed: () {}, child: Text('Forget Password?', style: TextStyle(color: Colors.grey, fontSize: 13))),
+                    TextButton(
+                        onPressed: () {
+                          Get.to(() => ForgotPasswordScreen());
+                        },
+                        child: Text('Forget Password?', style: TextStyle(color: Colors.grey, fontSize: 13))),
                   ],
                 ),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
                 ),
                 CustomButton(
-                  name: 'Sign up as Posters',
+                  name: 'Sign in',
                   onTap: () {
                     if (formKey.currentState!.validate() ?? false) {
-                      print('yes');
+                      Get.to(() => BottomNavigationBarScreen());
                     }
                     print('no');
                   },

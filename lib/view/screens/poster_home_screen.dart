@@ -62,11 +62,14 @@ class PosterHomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              CustomField(
-                color: Colors.white,
-                text: 'search for doers',
-                isPrefixIcon: true,
-                prefixIcon: Icon(Icons.search),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.05),
+                child: CustomField(
+                  color: Colors.white,
+                  text: 'search for doers',
+                  isPrefixIcon: true,
+                  prefixIcon: Icon(Icons.search),
+                ),
               ),
               SizedBox(
                 height: mediaQuerySize.height * 0.03.h,
