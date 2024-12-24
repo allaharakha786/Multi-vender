@@ -58,8 +58,8 @@ class WelcomebackSignin extends StatelessWidget {
                     }
                     return null;
                   },
-                  isPrefixIcon: true,
-                  prefixIcon: Obx(
+                  isSuffixIcon: true,
+                  suffixIcon: Obx(
                     () => IconButton(
                       icon: Icon(
                         passwordController.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,

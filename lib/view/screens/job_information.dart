@@ -26,8 +26,11 @@ class JobInformation extends StatelessWidget {
           )),
           child: Column(
             children: [
-              ArrowBackButton(
-                backgroundColor: AppColors.whiteColor,
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: mediaQuerySize.height * 0.03, horizontal: mediaQuerySize.width * 0.04),
+                child: ArrowBackButton(
+                  backgroundColor: AppColors.whiteColor,
+                ),
               ),
               SizedBox(
                 height: mediaQuerySize.height * 0.03.h,

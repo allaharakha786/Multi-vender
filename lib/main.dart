@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       designSize: Size(mediaQuerySize.width, mediaQuerySize.height),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: GetMaterialApp(debugShowCheckedModeBanner: false, home: VeriCodeScreen()),
+      child: GetMaterialApp(debugShowCheckedModeBanner: false, home: BottomNavigationBarScreen()),
     );
   }
 }
