@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/view/widgets/arrow_back_button.dart';
-import 'package:multi_vender/view/widgets/custom_user_widget.dart';
 
 import '../../../controllers/utils/app_colors.dart';
 
@@ -43,7 +42,7 @@ class NotificationScreen2 extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: mediaQuerySize.height * 0.01.h, // mediaQuerySize.height * 0.05.h,
+                  height: mediaQuerySize.height * 0.01.h,
                 ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,

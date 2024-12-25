@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 
 class CustomUserWidget extends StatelessWidget {
   final String text;
@@ -16,39 +18,24 @@ class CustomUserWidget extends StatelessWidget {
       child: Container(
           height: mediaQuerySize.height * 0.125.h,
           width: mediaQuerySize.width * 0.8.w,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              // color: Colors.grey.withOpacity(0.09),
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 3, spreadRadius: 0, offset: Offset(0, 3))]),
+          decoration: BoxDecoration(color: AppColors.whiteColor, borderRadius: BorderRadius.circular(15), boxShadow: [BoxShadow(color: AppColors.shadowColor2, blurRadius: 3, spreadRadius: 0, offset: Offset(0, 3))]),
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.035.w, vertical: mediaQuerySize.height * 0.01),
                 child: Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.black.withOpacity(0.07), image: DecorationImage(image: AssetImage(img), fit: BoxFit.cover)),
+                  height: mediaQuerySize.height * 0.08.h,
+                  width: mediaQuerySize.width * 0.16.w,
+                  decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black.withOpacity(0.07), image: DecorationImage(image: AssetImage(img), fit: BoxFit.cover)),
                 ),
               ),
               SizedBox(
-                width: 5,
+                width: mediaQuerySize.width * 0.005.w,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    text,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    secText,
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  )
-                ],
+                children: [Text(text, style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.blackColor, fontSize: 14)), Text(secText, style: AppTextstyles.simpleText().copyWith(color: AppColors.blackColor, fontSize: 11))],
               )
             ],
           )),

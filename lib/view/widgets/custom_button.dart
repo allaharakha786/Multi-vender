@@ -10,16 +10,7 @@ class CustomButton extends StatelessWidget {
   final double width;
   final bool isEnabled;
 
-  CustomButton(
-      {super.key,
-      required this.name,
-      this.color = AppColors.buttonColor,
-      this.textStyle = const TextStyle(
-        color: Colors.white,
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-      ),
-      this.onTap, this.width=300,this.isEnabled=false});
+  CustomButton({super.key, required this.name, this.color = AppColors.buttonColor, this.textStyle = const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600, fontFamily: 'medium'), this.onTap, this.width = 300, this.isEnabled = false});
 
   @override
   Widget build(BuildContext context) {

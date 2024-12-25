@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/view/screens/splash/role_screen.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
@@ -50,20 +52,14 @@ class SplashScreen extends StatelessWidget {
                           SizedBox(
                             height: mediaQuerySize.height * 0.025.h,
                           ),
-                          Text(
-                            'Welcome to Suneeb',
-                            style: TextStyle(color: Color(0xff4D4D4D), fontSize: 22, fontWeight: FontWeight.bold),
-                          ),
+                          Text('Welcome to Suneeb', style: AppTextstyles.simpleTextBold().copyWith(color: AppColors.lightBlackColor)),
                           SizedBox(
                             height: mediaQuerySize.height * 0.01.h,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 28),
-                            child: Text(
-                              'From home repairs to creative projects, get it done with ease. On-demand skilled handymen and women at your fingertips. We call them Doers.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.w400, fontSize: 16),
-                            ),
+                            child: Text('From home repairs to creative projects, get it done with ease. On-demand skilled handymen and women at your fingertips. We call them Doers.',
+                                textAlign: TextAlign.center, style: AppTextstyles.simpleText().copyWith(color: AppColors.lightBlackColor, fontSize: 14)),
                           ),
                           SizedBox(
                             height: mediaQuerySize.height * 0.023.h,

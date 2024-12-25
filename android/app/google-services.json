@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "217416626747",
+    "project_id": "multi-vendor-a67a1",
+    "storage_bucket": "multi-vendor-a67a1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217416626747:android:7a13d421bc8f16f575e21e",
+        "android_client_info": {
+          "package_name": "com.example.multi_vender"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-x1_0NVp5e3UbDfRWLcYPOs5svS4qMMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

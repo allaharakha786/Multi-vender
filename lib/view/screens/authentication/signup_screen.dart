@@ -1,8 +1,10 @@
-import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
+import 'package:multi_vender/controllers/utils/validation_extensions.dart';
 import 'package:multi_vender/view/screens/authentication/verification_code_screen.dart';
 import 'package:multi_vender/view/screens/bottom_navigation_bar.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
@@ -22,7 +24,6 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   PasswordController passwordController = Get.put(PasswordController());
 
-  Country? _selectedCountry;
   GlobalKey<FormState> formKey = GlobalKey();
 
   @override
@@ -34,7 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Form(
           key: formKey,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+            padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.05, vertical: 0),
             child: Column(
               children: [
                 SizedBox(
@@ -49,7 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Center(
                     child: Text(
                   'Create Your Account',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+                  style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.blackColor),
                 )),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
@@ -58,7 +59,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   text: 'Full Name',
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'please enter the following field';
+                      return 'please fill this field';
                     }
                     return null;
                   },
@@ -70,7 +71,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   text: '+92 | XXX-XXXXXXX',
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'please enter the following field';
+                      return 'please fill this field';
+                    }
+                    if (!value.isValidPhoneNumber) {
+                      return 'please enter valid phone number';
+                    }
+                    if (value.length < 12) {
+                      return 'please enter valid phone number';
                     }
                     return null;
                   },
@@ -83,6 +90,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'please enter the following field';
+                    }
+                    if (!value.isValidEmail) {
+                      return 'please enter a valid email address';
                     }
                     return null;
                   },
@@ -130,7 +140,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     Expanded(
                       child: Divider(
-                        color: Colors.grey,
+                        color: AppColors.shadowColor2,
                         thickness: 1,
                       ),
                     ),
@@ -139,14 +149,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: Text(
                         'Or With',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: AppColors.shadowColor2,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
                     Expanded(
                       child: Divider(
-                        color: Colors.grey,
+                        color: AppColors.shadowColor2,
                         thickness: 1,
                       ),
                     ),
@@ -156,7 +166,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: mediaQuerySize.height * 0.03.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.01.w, vertical: mediaQuerySize.height * 0.01.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -164,13 +174,13 @@ class _SignupScreenState extends State<SignupScreen> {
                         imgUrl: 'assets/images/google3.png',
                       ),
                       SizedBox(
-                        width: 10,
+                        width: mediaQuerySize.width * 0.025,
                       ),
                       SocialMediaIconsRow(
                         imgUrl: 'assets/images/fb.png',
                       ),
                       SizedBox(
-                        width: 10,
+                        width: mediaQuerySize.width * 0.025,
                       ),
                       SocialMediaIconsRow(
                         imgUrl: 'assets/images/appl_img.png',
@@ -179,13 +189,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: mediaQuerySize.height * 0.03.h,
+                  width: mediaQuerySize.width * 0.025,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       ' Already have an account?',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.grey),
+                      style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.shadowColor2, fontSize: 14),
                     ),
                     TextButton(
                         onPressed: () {
@@ -193,7 +204,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         },
                         child: Text(
                           'Log in',
-                          style: TextStyle(color: Color(0xffFFCC00), fontSize: 18, fontWeight: FontWeight.bold),
+                          style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.amberColor),
                         ))
                   ],
                 ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
 import 'package:multi_vender/view/screens/proof_identity_document/proof_identity_screen.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../controllers/getxControllers/otp_verifi_cpntroller.dart';
 import '../../widgets/arrow_back_button.dart';
@@ -19,10 +21,13 @@ class VerificationCodeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          padding: EdgeInsets.symmetric(vertical: mediaQuerySize.height * 0.01.h, horizontal: mediaQuerySize.width * 0.06.w),
           child: Column(
             children: [
-              ArrowBackButton(backgroundColor: Colors.black.withOpacity(0.07)),
+              ArrowBackButton(
+                backgroundColor: AppColors.textFieldColor,
+                arrowColor: AppColors.whiteColor,
+              ),
               SizedBox(height: mediaQuerySize.height * 0.06),
               Center(
                 child: Text(
@@ -41,17 +46,25 @@ class VerificationCodeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
               ),
               SizedBox(height: mediaQuerySize.height * 0.03),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildVerificationBox(controller.code1, 0),
-                  SizedBox(width: mediaQuerySize.width * 0.03),
-                  _buildVerificationBox(controller.code2, 1),
-                  SizedBox(width: mediaQuerySize.width * 0.03),
-                  _buildVerificationBox(controller.code3, 2),
-                  SizedBox(width: mediaQuerySize.width * 0.03),
-                  _buildVerificationBox(controller.code4, 3),
-                ],
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.04),
+                child: PinCodeTextField(
+                  appContext: context,
+                  length: 4,
+                  obscureText: false,
+                  animationType: AnimationType.fade,
+                  animationDuration: Duration(milliseconds: 300),
+                  pinTheme: PinTheme(
+                    shape: PinCodeFieldShape.box,
+                    inactiveColor: AppColors.shadowColor2,
+                    borderRadius: BorderRadius.circular(15),
+                    fieldHeight: mediaQuerySize.height * 0.085,
+                    fieldWidth: mediaQuerySize.width * 0.166,
+                    selectedColor: AppColors.buttonColor,
+                  ),
+                  onChanged: (value) {},
+                  onCompleted: (value) {},
+                ),
               ),
               SizedBox(height: mediaQuerySize.height * 0.03),
               Obx(

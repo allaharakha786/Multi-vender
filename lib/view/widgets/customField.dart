@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 
 class CustomField extends StatelessWidget {
   final bool isPrefixIcon;
@@ -22,12 +24,10 @@ class CustomField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: TextFormField(
-        validator: validator,
-        decoration: InputDecoration(
-          fillColor: color ?? Colors.black.withOpacity(0.07),
+    return TextFormField(
+      validator: validator,
+      decoration: InputDecoration(
+          fillColor: color ?? AppColors.textFieldColor,
           filled: true,
           prefixIcon: isPrefixIcon ? prefixIcon : null,
           suffixIcon: isSuffixIcon ? suffixIcon : const SizedBox(),
@@ -43,12 +43,10 @@ class CustomField extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12), // Rounded corners
-            borderSide: const BorderSide(color: Colors.blue, width: 2), // Customize focused border
+            borderSide: BorderSide(color: AppColors.textFieldColor, width: 2), // Customize focused border
           ),
-          hintStyle: const TextStyle(color: Colors.grey),
-        ),
-        style: const TextStyle(color: Colors.black),
-      ),
+          hintStyle: AppTextstyles.simpleText().copyWith(color: AppColors.shadowColor2)),
+      style: AppTextstyles.simpleText().copyWith(color: AppColors.blackColor),
     );
   }
 }
