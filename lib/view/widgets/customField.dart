@@ -10,40 +10,37 @@ class CustomField extends StatelessWidget {
   final Color? color;
   final String? Function(String?)? validator;
   final String? text;
+  TextEditingController? controller;
+  int? maxLines;
+  TextInputType? keyboardType;
 
-  CustomField({
-    super.key,
-    this.text,
-    this.suffixIcon,
-    this.isPrefixIcon = false,
-    this.isSuffixIcon = false,
-    this.prefixIcon,
-    this.color,
-    this.validator,
-  });
+  CustomField({super.key, this.text, this.suffixIcon, this.isPrefixIcon = false, this.isSuffixIcon = false, this.prefixIcon, this.color, this.validator, this.controller, this.maxLines, this.keyboardType});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType ?? TextInputType.text,
+      maxLines: maxLines ?? 1,
+      controller: controller,
       validator: validator,
       decoration: InputDecoration(
           fillColor: color ?? AppColors.textFieldColor,
           filled: true,
           prefixIcon: isPrefixIcon ? prefixIcon : null,
           suffixIcon: isSuffixIcon ? suffixIcon : const SizedBox(),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 18),
           hintText: text,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12), // Rounded corners
-            borderSide: BorderSide.none, // Removes the border line
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12), // Rounded corners
+            borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12), // Rounded corners
-            borderSide: BorderSide(color: AppColors.textFieldColor, width: 2), // Customize focused border
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: AppColors.textFieldColor, width: 2),
           ),
           hintStyle: AppTextstyles.simpleText().copyWith(color: AppColors.shadowColor2)),
       style: AppTextstyles.simpleText().copyWith(color: AppColors.blackColor),

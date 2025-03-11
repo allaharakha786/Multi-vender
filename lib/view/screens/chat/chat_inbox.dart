@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/view/screens/chat/chat_conversation.dart';
+import 'package:multi_vender/view/widgets/arrow_back_button.dart';
+import 'package:multi_vender/view/widgets/customField.dart';
 
 class ChatInbox extends StatelessWidget {
   const ChatInbox({super.key});
@@ -10,190 +14,113 @@ class ChatInbox extends StatelessWidget {
   Widget build(BuildContext context) {
     Size mediaQuerySize = MediaQuery.of(context).size;
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: true,
-          leading: Container(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  height: 40,
-                  width: 40,
-                  // height: mediaQuerySize.height*0.1.h,
-                  // width: mediaQuerySize.width*0.06.w,
-                  decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_back,
-                      ))),
-            ),
-          ),
-          title: Text(
-            "Chat",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
-          ),
-        ),
-        body: Container(
-          color: Color(0xFF115740),
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                Color(0xFF115740),
-                Color.fromARGB(158, 255, 255, 255),
-              ], begin: Alignment.centerLeft, end: Alignment.topRight),
-              // gradient: LinearGradient(
-              //   colors: [
-              //     Color(0xff115740),
-              //     Colors.white,
-              //   ],
-              //   begin: Alignment.topCenter,
-              //   end: Alignment.bottomCenter,
-              // ),
-            ),
-            child: ListView(
-              children: [
-                // SizedBox(
-                //   height: 100,
-                // ),
-                Container(
-                  margin: EdgeInsets.all(15),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "Search for Doers..",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      prefixIcon: Icon(Icons.search, color: Colors.grey),
-                      filled: true,
-                      fillColor: Colors.white,
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(color: Colors.white, width: 2),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(color: Colors.white, width: 2),
-                      ),
-                    ),
-                    style: TextStyle(color: Colors.white),
+        body: SafeArea(
+      child: Container(
+        height: mediaQuerySize.height.h,
+        width: mediaQuerySize.width.w,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          AppColors.buttonColor,
+          AppColors.shadowColor2,
+        ])),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.03.w, vertical: mediaQuerySize.height * 0.02.h),
+              child: Row(
+                children: [
+                  ArrowBackButton(
+                    arrowColor: AppColors.whiteColor,
+                    backgroundColor: AppColors.shadowColor2,
                   ),
+                  SizedBox(width: mediaQuerySize.width * 0.3.w),
+                  Text(
+                    "Chat ",
+                    style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: AppColors.whiteColor),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: mediaQuerySize.width * 0.06.w,
+              ),
+              child: CustomField(
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: AppColors.blackColor54,
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  height: mediaQuerySize.height.h,
-                  width: mediaQuerySize.width.w,
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              buildUserRounded(
-                                "assets/images/Ellipse 19.png",
-                                () {
-                                  Get.to(() => ChatScreen());
-                                },
+                isPrefixIcon: true,
+                text: 'Search for doers',
+                color: AppColors.whiteColor,
+              ),
+            ),
+            SizedBox(
+              height: mediaQuerySize.height * 0.02.h,
+            ),
+            Expanded(
+              child: Container(
+                width: mediaQuerySize.width.w,
+                decoration: BoxDecoration(color: AppColors.whiteColor, borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.02.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: mediaQuerySize.height * 0.04.h,
+                        ),
+                        Container(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: List.generate(
+                                10,
+                                (index) => buildUserRounded(
+                                  "assets/images/Ellipse 19.png",
+                                  () {
+                                    Get.to(() => ChatScreen());
+                                  },
+                                ),
                               ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 20.png",
-                                () {
-                                  Get.to(() => ChatScreen());
-                                },
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 21.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 19.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 20.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 21.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 19.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 20.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 21.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 19.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 20.png",
-                                () {},
-                              ),
-                              buildUserRounded(
-                                "assets/images/Ellipse 21.png",
-                                () {},
-                              ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(left: 20),
-                        child: Text(
-                          "Messages",
-                          style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w500),
+                        SizedBox(
+                          height: mediaQuerySize.height * 0.015.h,
                         ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Flexible(
-                        child: ListView(
-                          children: [
-                            buildInboxListTile("assets/images/Ellipse 20.png"),
-                            buildInboxListTile("assets/images/Ellipse 21.png"),
-                            buildInboxListTile("assets/images/Ellipse 19.png"),
-                            buildInboxListTile("assets/images/Ellipse 20.png"),
-                            buildInboxListTile("assets/images/Ellipse 21.png"),
-                            buildInboxListTile("assets/images/Ellipse 19.png"),
-                            buildInboxListTile("assets/images/Ellipse 20.png"),
-                            buildInboxListTile("assets/images/Ellipse 21.png"),
-                            buildInboxListTile("assets/images/Ellipse 19.png")
-                          ],
+                        Container(
+                          margin: EdgeInsets.only(left: mediaQuerySize.width * 0.025.w),
+                          child: Text(
+                            "Messages",
+                            style: AppTextstyles.simpleText().copyWith(fontSize: 14, color: AppColors.lightBlackColor),
+                          ),
                         ),
-                      )
-                    ],
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Column(
+                            children: List.generate(
+                          10,
+                          (index) => buildInboxListTile("assets/images/Ellipse 20.png"),
+                        ))
+                      ],
+                    ),
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    ));
   }
 
   buildInboxListTile(String pic) {
     return Card(
-      surfaceTintColor: Colors.white,
-      color: Colors.white,
+      surfaceTintColor: AppColors.whiteColor,
+      color: AppColors.whiteColor,
       margin: EdgeInsets.all(10),
       elevation: 5,
       child: ListTile(
@@ -201,29 +128,23 @@ class ChatInbox extends StatelessWidget {
           backgroundImage: AssetImage(pic),
           radius: 25,
         ),
-        // Container(
-        //   width: 50,
-        //   height: 50,
-        //   margin: EdgeInsets.symmetric(horizontal: 5),
-        //   decoration: BoxDecoration(
-        //     shape: BoxShape.circle,
-        //     image: DecorationImage(
-        //       image: AssetImage(pic),
-        //       //  NetworkImage(
-        //       //   "https://via.placeholder.com/150",
-        //       // ),
-        //       fit: BoxFit.cover,
-        //     ),
-        //   ),
-        // ),
         title: Text(
           "Jhon Smith",
+          style: AppTextstyles.simpleText().copyWith(fontSize: 14, color: AppColors.blackColor),
         ),
-        subtitle: Text("Lorem ipsum text here"),
+        subtitle: Text(
+          "Lorem ipsum text here",
+          style: AppTextstyles.simpleText().copyWith(fontSize: 12, color: AppColors.blackColor),
+        ),
         trailing: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [Text("25 min")],
+          children: [
+            Text(
+              "25 min",
+              style: AppTextstyles.simpleText().copyWith(fontSize: 10, color: AppColors.blackColor),
+            )
+          ],
         ),
       ),
     );
@@ -260,7 +181,7 @@ class ChatInbox extends StatelessWidget {
               color: Colors.green,
               shape: BoxShape.circle,
               border: Border.all(
-                color: Colors.white,
+                color: AppColors.whiteColor,
                 width: 2,
               ),
             ),

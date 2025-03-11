@@ -65,21 +65,30 @@ class ChoosePaymentMethod extends StatelessWidget {
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              return Container(
-                                height: 100,
-                                width: 100,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.black12, image: DecorationImage(fit: BoxFit.cover, image: AssetImage(images[index]))),
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.0075),
+                                child: Container(
+                                  padding: EdgeInsets.all(index == 1 ? 0 : 20),
+                                  height: mediaQuerySize.height * 0.04,
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.black12, image: DecorationImage(scale: index == 1 ? 1.0 : 10, fit: index == 1 ? BoxFit.cover : BoxFit.scaleDown, image: AssetImage(images[index]))),
+                                ),
                               );
                             },
                           ),
                           SizedBox(
-                            height: mediaQuerySize.height * 0.03,
+                            height: mediaQuerySize.height * 0.035,
                           ),
-                          CustomButton(
-                              onTap: () {
-                                Get.to(() => ChooseAccount());
-                              },
-                              name: 'Next')
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                    onTap: () {
+                                      Get.to(() => ChooseAccount());
+                                    },
+                                    name: 'Next'),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -93,5 +102,5 @@ class ChoosePaymentMethod extends StatelessWidget {
     );
   }
 
-  List<String> images = ['assets/images/bank_transfer.png', 'assets/images/easy_paisa.png', 'assets/images/jazz_cash.png'];
+  List<String> images = ['assets/images/bank_transfer.png', 'assets/images/easy_paisa.jpg', 'assets/images/jazz_cash.png'];
 }

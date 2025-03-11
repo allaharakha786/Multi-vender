@@ -27,21 +27,23 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                 SizedBox(
                   height: mediaQuerySize.height * 0.04.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ArrowBackButton(
-                      backgroundColor: Colors.white,
-                    ),
-                    //  SizedBox(width: mediaQuerySize.width*0.05.w,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: Text(
-                        'Payment Confirmation',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.04),
+                  child: Row(
+                    children: [
+                      ArrowBackButton(
+                        backgroundColor: Colors.white,
                       ),
-                    ),
-                  ],
+                      //  SizedBox(width: mediaQuerySize.width*0.05.w,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25),
+                        child: Text(
+                          'Payment Confirmation',
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,

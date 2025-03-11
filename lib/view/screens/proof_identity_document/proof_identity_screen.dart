@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/view/screens/proof_identity_document/preview_screen.dart';
 
 import '../../widgets/arrow_back_button.dart';
@@ -12,44 +14,43 @@ class ProofIdentityScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RxBool isChecked1 = true.obs;
-    RxBool isChecked2 = false.obs;
+    RxBool isChecked2 = true.obs;
     RxBool isChecked3 = false.obs;
     Size mediaQuerySize = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        padding: EdgeInsets.symmetric(vertical: mediaQuerySize.height * 0.015, horizontal: mediaQuerySize.width * 0.05.w),
         child: Column(
           children: [
-            ArrowBackButton(backgroundColor: Colors.black.withOpacity(0.07)),
+            ArrowBackButton(
+              backgroundColor: Colors.black.withOpacity(0.07),
+              arrowColor: AppColors.lightBlackColor,
+            ),
             SizedBox(
               height: mediaQuerySize.height * 0.06.h,
             ),
             Center(
                 child: Text(
               'Proof of Identity',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.blackColor, fontSize: 20),
             )),
             SizedBox(
-              height: mediaQuerySize.height * 0.02.h,
+              height: mediaQuerySize.height * 0.035.h,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-              child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    'Select document type',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.start,
-                  )),
+            Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Select document type',
+                  style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.lightBlackColor),
+                  textAlign: TextAlign.start,
+                )),
+            SizedBox(
+              height: mediaQuerySize.height * 0.01.h,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 15),
-              child: Text(
-                'Choose the type of document you would like to upload for verification. ',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.grey),
-              ),
+            Text(
+              'Choose the type of document you would like to upload for verification. ',
+              style: AppTextstyles.simpleText().copyWith(color: AppColors.shadowColor2, fontSize: 13),
             ),
             SizedBox(
               height: mediaQuerySize.height * 0.02.h,
@@ -67,9 +68,13 @@ class ProofIdentityScreen extends StatelessWidget {
             ),
             CustomButton(
                 onTap: () {
-                  Get.to(() => PreviewScreen());
+                  if (isChecked2.value || isChecked3.value) {
+                    Get.to(() => PreviewScreen(
+                          isCharacterCertificate: isChecked3.value,
+                          isIdCard: isChecked2.value,
+                        ));
+                  }
                 },
-                width: mediaQuerySize.width * 0.9,
                 name: 'Continue'),
             SizedBox(
               height: mediaQuerySize.height * 0.03.h,

@@ -30,23 +30,19 @@ class SplashScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    height: mediaQuerySize.height * 0.6.h,
                     width: mediaQuerySize.width * 1.w,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 60),
-                      child: Image.asset(
-                        'assets/images/splash_image.png',
-                        fit: BoxFit.contain,
-                      ),
+                    child: Image.asset(
+                      'assets/images/splash_image.png',
+                      fit: BoxFit.contain,
                     ),
                   ),
                   Container(
                     width: mediaQuerySize.width.w,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)), boxShadow: [
+                    decoration: BoxDecoration(color: AppColors.whiteColor, borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)), boxShadow: [
                       BoxShadow(blurRadius: 4, spreadRadius: 1, offset: Offset(0, 3)),
                     ]),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.05.w, vertical: mediaQuerySize.height * 0.03.h),
                       child: Column(
                         children: [
                           SizedBox(
@@ -57,18 +53,24 @@ class SplashScreen extends StatelessWidget {
                             height: mediaQuerySize.height * 0.01.h,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 28),
+                            padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.05),
                             child: Text('From home repairs to creative projects, get it done with ease. On-demand skilled handymen and women at your fingertips. We call them Doers.',
                                 textAlign: TextAlign.center, style: AppTextstyles.simpleText().copyWith(color: AppColors.lightBlackColor, fontSize: 14)),
                           ),
                           SizedBox(
                             height: mediaQuerySize.height * 0.023.h,
                           ),
-                          CustomButton(
-                            name: 'Get Started',
-                            onTap: () {
-                              Get.to(() => SelectRoleScreen());
-                            },
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                  name: 'Get Started',
+                                  onTap: () {
+                                    Get.to(() => SelectRoleScreen());
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(
                             height: mediaQuerySize.height * 0.02.h,

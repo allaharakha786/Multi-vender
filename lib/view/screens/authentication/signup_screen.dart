@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/controllers/getxControllers/auth_controller.dart';
 import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
 import 'package:multi_vender/controllers/utils/app_colors.dart';
 import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/controllers/utils/validation_extensions.dart';
+import 'package:multi_vender/view/screens/authentication/login_screen.dart';
 import 'package:multi_vender/view/screens/authentication/verification_code_screen.dart';
-import 'package:multi_vender/view/screens/bottom_navigation_bar.dart';
+
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
 
@@ -15,14 +17,24 @@ import '../../widgets/social_mediaicon_widget.dart';
 import '../../widgets/terms_contdition_widget.dart';
 
 class SignupScreen extends StatefulWidget {
-  SignupScreen({super.key});
+  bool? isPoster;
+  SignupScreen({super.key, this.isPoster = false});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  PasswordController passwordController = Get.put(PasswordController());
+  PasswordController passwordControllers = Get.put(PasswordController());
+
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  AuthController authController = Get.find();
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -56,6 +68,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: mediaQuerySize.height * 0.03.h,
                 ),
                 CustomField(
+                  controller: fullNameController,
                   text: 'Full Name',
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -68,6 +81,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: mediaQuerySize.height * 0.03.h,
                 ),
                 CustomField(
+                  controller: phoneNumberController,
                   text: '+92 | XXX-XXXXXXX',
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -76,7 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (!value.isValidPhoneNumber) {
                       return 'please enter valid phone number';
                     }
-                    if (value.length < 12) {
+                    if (value.length < 11) {
                       return 'please enter valid phone number';
                     }
                     return null;
@@ -86,6 +100,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: mediaQuerySize.height * 0.03.h,
                 ),
                 CustomField(
+                  controller: emailController,
                   text: 'Email',
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -100,7 +115,23 @@ class _SignupScreenState extends State<SignupScreen> {
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
                 ),
+
                 CustomField(
+                  controller: cityController,
+                  text: 'city',
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'please enter your city';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: mediaQuerySize.height * 0.03.h,
+                ),
+
+                CustomField(
+                  controller: passwordController,
                   text: 'Password',
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -112,26 +143,43 @@ class _SignupScreenState extends State<SignupScreen> {
                   suffixIcon: Obx(
                     () => IconButton(
                       icon: Icon(
-                        passwordController.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
+                        passwordControllers.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
                       ),
-                      onPressed: passwordController.togglePasswordVisibility,
+                      onPressed: passwordControllers.togglePasswordVisibility,
                     ),
                   ),
                 ),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
                 ),
-                TermsAndConditionsText(),
+                // TermsAndConditionsText(),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
                 ),
-                CustomButton(
-                  name: 'Sign up as Posters',
-                  onTap: () {
-                    if (formKey.currentState!.validate()) {
-                      Get.to(() => VerificationCodeScreen());
-                    }
-                  },
+                Row(
+                  children: [
+                    Expanded(
+                      child: Obx(() {
+                        return CustomButton(
+                          isLoading: authController.signUpLoading.value,
+                          name: 'Sign up as ${widget.isPoster! ? 'Poster' : 'Doer'}',
+                          onTap: () async {
+                            if (formKey.currentState!.validate()) {
+                              authController.signUpUserController(fullName: fullNameController.text, email: emailController.text, password: passwordController.text, phoneNumber: phoneNumberController.text, isPoster: widget.isPoster ?? false).then(
+                                (value) {
+                                  if (value == true) {
+                                    Get.to(() => VerificationCodeScreen(
+                                          email: emailController.text,
+                                        ));
+                                  }
+                                },
+                              );
+                            }
+                          },
+                        );
+                      }),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
@@ -200,7 +248,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     TextButton(
                         onPressed: () {
-                          Get.to(() => BottomNavigationBarScreen());
+                          Get.to(() => LoginScreen());
                         },
                         child: Text(
                           'Log in',

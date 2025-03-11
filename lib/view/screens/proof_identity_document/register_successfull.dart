@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:multi_vender/view/screens/authentication/sign_in_screen.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/view/screens/authentication/login_screen.dart';
 
 import 'package:multi_vender/view/widgets/custom_button.dart';
@@ -15,7 +16,7 @@ class RegisterSuccessfull extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.1),
+        padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.1.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,22 +30,21 @@ class RegisterSuccessfull extends StatelessWidget {
                 decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/Vector.png'))),
                 child: Icon(
                   Icons.check,
-                  color: Colors.white,
-                  size: 40,
+                  color: AppColors.whiteColor,
+                  size: mediaQuerySize.width * 0.12.w,
                 ),
               ),
             ),
-            Text(
-              'Registration Successful!',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600, color: Color(0xff4D4D4D)),
+            Center(
+              child: Text(
+                'Registration Successful!',
+                style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.lightBlackColor),
+              ),
             ),
             SizedBox(
               height: mediaQuerySize.height * 0.008.h,
             ),
-            Text(
-              'Your account is awaiting admin approval. You will receive a notification once your profile is activated. ',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: Colors.grey),
-            ),
+            Text(textAlign: TextAlign.center, 'Your account is awaiting admin approval. You will receive a notification once your profile is activated. ', style: AppTextstyles.simpleText().copyWith(color: AppColors.shadowColor2, fontSize: 15)),
             SizedBox(
               height: mediaQuerySize.height * 0.03.h,
             ),
@@ -52,7 +52,7 @@ class RegisterSuccessfull extends StatelessWidget {
                 onTap: () {
                   Get.to(() => LoginScreen());
                 },
-                width: mediaQuerySize.width * 0.9,
+                width: mediaQuerySize.width * 0.9.w,
                 name: 'Continue'),
           ],
         ),

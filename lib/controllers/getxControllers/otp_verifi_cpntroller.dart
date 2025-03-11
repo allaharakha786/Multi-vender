@@ -16,10 +16,7 @@ class VerificationController extends GetxController {
 
   // Validate input fields
   void validateInput() {
-    isButtonEnabled.value = code1.text.isNotEmpty &&
-        code2.text.isNotEmpty &&
-        code3.text.isNotEmpty &&
-        code4.text.isNotEmpty;
+    isButtonEnabled.value = code1.text.isNotEmpty && code2.text.isNotEmpty && code3.text.isNotEmpty && code4.text.isNotEmpty;
   }
 
   // Update focus state

@@ -77,11 +77,17 @@ class ChooseAccount extends StatelessWidget {
                           SizedBox(
                             height: mediaQuerySize.height * 0.03,
                           ),
-                          CustomButton(
-                              onTap: () {
-                                Get.to(() => PaymentConfirmationScreen());
-                              },
-                              name: 'Next')
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomButton(
+                                    onTap: () {
+                                      Get.to(() => PaymentConfirmationScreen());
+                                    },
+                                    name: 'Next'),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),

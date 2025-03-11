@@ -21,9 +21,9 @@ class CommonWidgets {
     );
   }
 
-  static Widget CommonJobTemplete({required Size mediaQuerySize, String? image, String? title, String? time, String? location, String? cash, String? status, String? price, Function()? onTapViewDetails, Function()? onTapUpdateStatus}) {
+  static Widget CommonJobTemplete({required Size mediaQuerySize, String? image, String? title, String? time, String? location, String? cash, String? status, String? price, Function()? onTapViewDetails, Function()? onTapUpdateStatus, bool? isSecondIcon = true}) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: mediaQuerySize.height * 0.0085, horizontal: mediaQuerySize.width * 0.01),
+      padding: EdgeInsets.symmetric(vertical: mediaQuerySize.height * 0.0085.h, horizontal: mediaQuerySize.width * 0.01.w),
       child: Container(
         width: mediaQuerySize.width,
         decoration: BoxDecoration(
@@ -39,7 +39,7 @@ class CommonWidgets {
                     0.2,
                   )),
             ],
-            borderRadius: BorderRadius.circular(12)),
+            borderRadius: BorderRadius.circular(12.sp)),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.03.w, vertical: mediaQuerySize.height * 0.02.h),
           child: Column(
@@ -48,61 +48,77 @@ class CommonWidgets {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: mediaQuerySize.height * 0.03),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black12.withOpacity(0.07),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(image ?? 'assets/images/cleaning_image.png'),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: mediaQuerySize.height * 0.03.h),
+                      child: Container(
+                        height: mediaQuerySize.height * 0.08,
+                        width: mediaQuerySize.width * 0.18,
+                        decoration: BoxDecoration(
+                            color: AppColors.textFieldColor,
+                            shape: BoxShape.circle,
+                            image: DecorationImage(fit: BoxFit.cover, image: NetworkImage("https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"))),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: mediaQuerySize.width * 0.04,
+                    width: mediaQuerySize.width * 0.04.w,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title ?? 'House Cleaning',
-                        style: AppTextstyles.simpleTextBold().copyWith(color: AppColors.blackColor, fontSize: 13),
-                      ),
-                      Text(time ?? 'Tomarrow, 2:00 AM'),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.amber,
-                          ),
-                          Text(location ?? 'Model Town')
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.money_outlined,
-                            color: Colors.amber,
-                          ),
-                          Text(cash ?? 'Cash')
-                        ],
-                      )
-                    ],
+                  Expanded(
+                    flex: 5,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title ?? 'House Cleaning',
+                          style: AppTextstyles.simpleTextBold().copyWith(color: AppColors.blackColor, fontSize: 13),
+                        ),
+                        Text(
+                          time ?? 'Tomarrow, 2:00 AM',
+                          style: AppTextstyles.simpleText().copyWith(fontSize: 12, color: AppColors.blackColor),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: AppColors.amberColor,
+                            ),
+                            Text(
+                              location ?? 'Model Town',
+                              style: AppTextstyles.simpleText().copyWith(fontSize: 12, color: AppColors.blackColor),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.money_outlined,
+                              color: AppColors.amberColor,
+                            ),
+                            Text(
+                              cash ?? 'Cash',
+                              style: AppTextstyles.simpleText().copyWith(fontSize: 12, color: AppColors.blackColor),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                  Spacer(),
-                  Column(
-                    children: [commonShortButton(text: status ?? 'In Progress', backgroundColor: Colors.amber.withOpacity(0.04), textColor: Colors.amber), Text(price ?? '\$20/hour')],
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [commonShortButton(mediaquerySize: mediaQuerySize, text: status ?? 'In Progress', backgroundColor: AppColors.amberColor.withOpacity(0.1), textColor: AppColors.amberColor), Align(alignment: Alignment.centerRight, child: Text(price ?? '\$20/hour'))],
+                    ),
                   )
                 ],
               ),
               SizedBox(
-                height: mediaQuerySize.height * 0.015,
+                height: mediaQuerySize.height * 0.015.h,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.02),
+                padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.02.w),
                 child: Row(
                   children: [
                     Expanded(
@@ -110,15 +126,19 @@ class CommonWidgets {
                         onTap: onTapViewDetails,
                         name: 'View Details',
                         color: Colors.transparent.withOpacity(0),
-                        textStyle: AppTextstyles.simpleTextBold().copyWith(color: AppColors.buttonColor),
+                        textStyle: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.buttonColor),
                       ),
                     ),
-                    SizedBox(
-                      width: mediaQuerySize.width * 0.03.w,
-                    ),
-                    Expanded(
-                      child: CustomButton(onTap: onTapUpdateStatus, name: 'Update Status', color: AppColors.buttonColor),
-                    )
+                    isSecondIcon!
+                        ? SizedBox(
+                            width: mediaQuerySize.width * 0.03.w,
+                          )
+                        : SizedBox(),
+                    isSecondIcon
+                        ? Expanded(
+                            child: CustomButton(textStyle: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.whiteColor), onTap: onTapUpdateStatus, name: 'Apply', color: AppColors.buttonColor),
+                          )
+                        : SizedBox()
                   ],
                 ),
               )
@@ -129,11 +149,11 @@ class CommonWidgets {
     );
   }
 
-  static Widget commonShortButton({required String text, required Color backgroundColor, required Color textColor}) {
+  static Widget commonShortButton({required Size mediaquerySize, required String text, required Color backgroundColor, required Color textColor}) {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: backgroundColor),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(horizontal: mediaquerySize.width * 0.02.w, vertical: mediaquerySize.height * 0.01.h),
         child: Text(
           text,
           style: AppTextstyles.simpleTextBold().copyWith(color: textColor, fontSize: 10),

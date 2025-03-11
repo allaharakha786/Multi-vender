@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/controllers/getxControllers/auth_controller.dart';
 import 'package:multi_vender/controllers/getxControllers/password_controller.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/view/screens/authentication/forgot_password_screen.dart';
+import 'package:multi_vender/view/screens/authentication/signup_screen.dart';
 import 'package:multi_vender/view/screens/bottom_navigation_bar.dart';
 import 'package:multi_vender/view/widgets/customField.dart';
 import 'package:multi_vender/view/widgets/custom_button.dart';
@@ -17,7 +21,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 GlobalKey<FormState> formKey = GlobalKey();
-PasswordController passwordController = Get.put(PasswordController());
+PasswordController passwordControllers = Get.put(PasswordController());
+AuthController authController = Get.find();
+
+TextEditingController emailcontroller = TextEditingController();
+TextEditingController passwordController = TextEditingController();
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
@@ -29,17 +37,13 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Form(
           key: formKey,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+            padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.08.w, vertical: 0),
             child: Column(
               children: [
                 SizedBox(
                   height: mediaQuerySize.height * 0.08.h,
                 ),
-                Center(
-                    child: Text(
-                  'Welcome Back',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-                )),
+                Center(child: Text('Welcome Back', style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.blackColor, fontSize: 18))),
                 SizedBox(
                   height: mediaQuerySize.height * 0.02.h,
                 ),
@@ -47,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: mediaQuerySize.height * 0.03.h,
                 ),
                 CustomField(
+                  controller: emailcontroller,
                   text: 'Email',
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -59,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: mediaQuerySize.height * 0.03.h,
                 ),
                 CustomField(
+                  controller: passwordController,
                   text: 'Password',
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -70,9 +76,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   suffixIcon: Obx(
                     () => IconButton(
                       icon: Icon(
-                        passwordController.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
+                        passwordControllers.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
                       ),
-                      onPressed: passwordController.togglePasswordVisibility,
+                      onPressed: passwordControllers.togglePasswordVisibility,
                     ),
                   ),
                 ),
@@ -86,35 +92,46 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Icon(
                           Icons.circle_outlined,
-                          size: 20,
                         ),
                         SizedBox(
-                          width: 5,
+                          width: mediaQuerySize.width * 0.012,
                         ),
-                        Text(
-                          'Remember Password',
-                          style: TextStyle(color: Colors.grey, fontSize: 13),
-                        ),
+                        Text('Remember Password', style: AppTextstyles.simpleText().copyWith(color: AppColors.shadowColor2, fontSize: 12)),
                       ],
                     ),
                     TextButton(
                         onPressed: () {
                           Get.to(() => ForgotPasswordScreen());
                         },
-                        child: Text('Forget Password?', style: TextStyle(color: Colors.grey, fontSize: 13))),
+                        child: Text('Forget Password?', style: AppTextstyles.simpleText().copyWith(color: AppColors.shadowColor2, fontSize: 12))),
                   ],
                 ),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
                 ),
-                CustomButton(
-                  name: 'Sign in',
-                  onTap: () {
-                    if (formKey.currentState!.validate() ?? false) {
-                      Get.to(() => BottomNavigationBarScreen());
-                    }
-                    print('no');
-                  },
+                Row(
+                  children: [
+                    Expanded(
+                      child: Obx(() {
+                        return CustomButton(
+                          isLoading: authController.loginLoading.value,
+                          name: 'Sign in',
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              authController.loginController(email: emailcontroller.text, password: passwordController.text).then(
+                                (value) {
+                                  if (value == true) {
+                                    Get.to(() => BottomNavigationBarScreen());
+                                  }
+                                },
+                              );
+                            }
+                            print('no');
+                          },
+                        );
+                      }),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
@@ -123,23 +140,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Expanded(
                       child: Divider(
-                        color: Colors.grey,
+                        color: AppColors.shadowColor2,
                         thickness: 1,
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        'Or With',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.01),
+                      child: Text('Or With', style: AppTextstyles.simpleText().copyWith(color: AppColors.shadowColor2, fontSize: 14)),
                     ),
                     Expanded(
                       child: Divider(
-                        color: Colors.grey,
+                        color: AppColors.shadowColor2,
                         thickness: 1,
                       ),
                     ),
@@ -149,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: mediaQuerySize.height * 0.02.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.01),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -157,13 +168,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         imgUrl: 'assets/images/google3.png',
                       ),
                       SizedBox(
-                        width: 15,
+                        width: mediaQuerySize.width * 0.02.w,
                       ),
                       SocialMediaIconsRow(
                         imgUrl: 'assets/images/fb.png',
                       ),
                       SizedBox(
-                        width: 15,
+                        width: mediaQuerySize.width * 0.02.w,
                       ),
                       SocialMediaIconsRow(
                         imgUrl: 'assets/images/appl_img.png',
@@ -177,16 +188,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'If you dont have account',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.grey),
-                    ),
+                    Text('If you dont have account', style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.shadowColor2, fontSize: 14)),
                     TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(color: Color(0xffFFCC00), fontSize: 18, fontWeight: FontWeight.bold),
-                        ))
+                        onPressed: () {
+                          Get.to(() => SignupScreen());
+                        },
+                        child: Text('Sign Up', style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.amberColor, fontSize: 14)))
                   ],
                 ),
                 SizedBox(
@@ -197,14 +204,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: mediaQuerySize.height * 0.07.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Color(0xff115740)),
+                    border: Border.all(color: AppColors.buttonColor),
                   ),
                   child: Center(
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => BottomNavigationBarScreen());
+                        },
                         child: Text(
                           'Sign in as Guest',
-                          style: TextStyle(color: Color(0xff115740), fontSize: 14, fontWeight: FontWeight.bold),
+                          style: AppTextstyles.simpleTextMedium().copyWith(color: AppColors.buttonColor),
                         )),
                   ),
                 )

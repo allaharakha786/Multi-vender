@@ -63,7 +63,9 @@ class SelectRoleScreen extends StatelessWidget {
                   ),
                   CustomUserWidget(
                       onTap: () {
-                        Get.to(() => SignupScreen());
+                        Get.to(() => SignupScreen(
+                              isPoster: true,
+                            ));
                       },
                       secText: 'You can post a job',
                       text: 'Poster',
@@ -73,7 +75,9 @@ class SelectRoleScreen extends StatelessWidget {
                   ),
                   CustomUserWidget(
                       onTap: () {
-                        Get.to(() => SignupScreen());
+                        Get.to(() => SignupScreen(
+                              isPoster: false,
+                            ));
                       },
                       secText: 'You can apply on to the job',
                       text: 'Doer',

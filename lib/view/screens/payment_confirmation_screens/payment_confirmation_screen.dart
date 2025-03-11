@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 import 'package:multi_vender/view/screens/payment_confirmation_screens/payment_successful_screen.dart';
 import 'package:multi_vender/view/widgets/arrow_back_button.dart';
 
@@ -30,21 +31,23 @@ class PaymentConfirmationScreen extends StatelessWidget {
                 SizedBox(
                   height: mediaQuerySize.height * 0.04.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ArrowBackButton(
-                      backgroundColor: Colors.white,
-                    ),
-                    //  SizedBox(width: mediaQuerySize.width*0.05.w,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: Text(
-                        'Payment Confirmation',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.04),
+                  child: Row(
+                    children: [
+                      ArrowBackButton(
+                        backgroundColor: Colors.white,
                       ),
-                    ),
-                  ],
+                      //  SizedBox(width: mediaQuerySize.width*0.05.w,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25),
+                        child: Text(
+                          'Payment Confirmation',
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: mediaQuerySize.height * 0.03.h,
@@ -58,7 +61,6 @@ class PaymentConfirmationScreen extends StatelessWidget {
                       SizedBox(
                         height: mediaQuerySize.height * 0.04.h,
                       ),
-                      // CustomField(color: Colors.grey,),
                       SingleChildScrollView(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 18),
@@ -126,18 +128,13 @@ class PaymentConfirmationScreen extends StatelessWidget {
                                 SizedBox(height: 8), // Spacing
                                 Text(
                                   'Visa ending in 1234',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                  style: AppTextstyles.simpleText().copyWith(fontSize: 14, color: AppColors.shadowColor2),
                                 ),
                               ],
                             ),
                           ),
                         ),
                       ),
-
                       SizedBox(
                         height: mediaQuerySize.height * 0.04.h,
                       ),
@@ -145,11 +142,20 @@ class PaymentConfirmationScreen extends StatelessWidget {
                       SizedBox(
                         height: mediaQuerySize.height * 0.03.h,
                       ),
-                      CustomButton(
-                          onTap: () {
-                            Get.to(() => PaymentSuccessfulScreen());
-                          },
-                          name: 'Confirm Payment')
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: mediaQuerySize.width * 0.05.w),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomButton(
+                                  onTap: () {
+                                    Get.to(() => PaymentSuccessfulScreen());
+                                  },
+                                  name: 'Confirm Payment'),
+                            ),
+                          ],
+                        ),
+                      )
                     ]),
                   ),
                 ),

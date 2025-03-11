@@ -1,54 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:multi_vender/controllers/utils/app_colors.dart';
+import 'package:multi_vender/controllers/utils/app_textstyles.dart';
 
 class CircleCheckBox extends StatelessWidget {
-  final String text; // The text to display next to the checkbox
-  final RxBool isChecked; // Reactive state for checkbox
-  final ValueChanged<bool>? onChanged; // Callback for checkbox state change
+  final String text;
+  final RxBool isChecked;
+  final ValueChanged<bool>? onChanged;
 
   CircleCheckBox({
     Key? key,
     required this.text,
-    required this.isChecked, // Pass the state as a parameter
+    required this.isChecked,
     this.onChanged,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size mediaquerySize = MediaQuery.of(context).size;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         GestureDetector(
           onTap: () {
-            isChecked.value = !isChecked.value; // Toggle the checked state
+            isChecked.value = !isChecked.value;
             if (onChanged != null) {
-              onChanged!(isChecked.value); // Notify parent widget
+              onChanged!(isChecked.value);
             }
           },
           child: Obx(
             () => Container(
-              height: 20,
-              width: 20,
+              height: mediaquerySize.height * 0.027.h,
+              width: mediaquerySize.width * 0.05.w,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: isChecked.value ? Color(0xff115740) : Colors.transparent,
+                color: isChecked.value ? AppColors.buttonColor : Colors.transparent,
                 border: Border.all(color: Colors.black.withOpacity(0.07), width: 2),
               ),
               child: isChecked.value
-                  ? Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 18,
+                  ? Center(
+                      child: Icon(
+                        Icons.check,
+                        color: AppColors.whiteColor,
+                        size: 12,
+                      ),
                     )
-                  : null, // Show check mark if checked
+                  : null,
             ),
           ),
         ),
-        SizedBox(width: 10),
-        Text(
-          text,
-          style: TextStyle(fontSize: 16),
-        ),
+        SizedBox(width: mediaquerySize.width * 0.03),
+        Text(text, style: AppTextstyles.simpleText().copyWith(color: AppColors.blackColor, fontSize: 13)),
       ],
     );
   }

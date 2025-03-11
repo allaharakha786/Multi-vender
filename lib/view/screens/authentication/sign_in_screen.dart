@@ -6,7 +6,8 @@ import 'package:multi_vender/view/widgets/custom_button.dart';
 import '../../widgets/arrow_back_button.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  bool isPoster;
+  SignInScreen({super.key, required this.isPoster});
 
   @override
   Widget build(BuildContext context) {
